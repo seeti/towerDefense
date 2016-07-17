@@ -159,7 +159,6 @@
     <ClCompile Include="GameStateStart.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TextureManager.cpp" />
-    <ClCompile Include="Tower.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationHandler.h" />
@@ -168,7 +167,6 @@
     <ClInclude Include="GameStateBuilding.h" />
     <ClInclude Include="GameStateStart.h" />
     <ClInclude Include="TextureManager.h" />
-    <ClInclude Include="Tower.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

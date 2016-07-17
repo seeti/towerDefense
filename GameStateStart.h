@@ -10,7 +10,9 @@ class GameStateStart : public GameState
 {
 private:
 	sf::View view;
-	void loadGame();
+	void cargaFondo();
+	void createMenu();
+	void enterBuildMode();
 
 public:
 	virtual void draw(const float dt);

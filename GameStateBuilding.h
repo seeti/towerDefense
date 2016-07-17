@@ -12,6 +12,8 @@ private:
 	sf::View gameView;
 	sf::View guiView;
 
+	void leaveBuildMode();
+
 public:
 
 	virtual void draw(const float dt);

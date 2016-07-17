@@ -11,15 +11,13 @@ class GameState;
 
 class Game
 {
-private:
-	void loadTextures();
-
 public:
 
 	std::stack<GameState*> states;
 
 	sf::RenderWindow window;
 	sf::Sprite background;
+	sf::Sprite backgroundBuilding;
 	TextureManager texmgr;
 
 	void pushState(GameState* state);

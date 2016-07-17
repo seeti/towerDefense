@@ -9,6 +9,9 @@ GameStateStart::GameStateStart(Game* game)
 	this->view.setSize(pos);
 	pos *= 0.5f;
 	this->view.setCenter(pos);
+
+	this->cargaFondo();
+	this->createMenu();
 }
 
 void GameStateStart::draw(const float dt)
@@ -25,6 +28,25 @@ void GameStateStart::update(const float dt)
 {
 }
 
+void GameStateStart::cargaFondo()
+{
+	this->game->texmgr.loadTexture("background", "media/bg.jpg");
+	this->game->background.setTexture(this->game->texmgr.getRef("background"));
+}
+
+void GameStateStart::createMenu()
+{
+	sf::String menu[3] = {"Jugar", "Opciones", "Salir"};
+	
+	for each (sf::String var in menu)
+	{
+		std::cout << (std::string)var << std::endl;
+	}
+
+	sf::RectangleShape rectBoton;
+
+}
+
 void GameStateStart::handleInput()
 {
 	sf::Event event;
@@ -39,21 +61,11 @@ void GameStateStart::handleInput()
 				game->window.close();
 				break;
 			}
-			/* Resize the window */
-			case sf::Event::Resized:
-			{
-				this->view.setSize(event.size.width, event.size.height);
-				this->game->background.setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, 0)));
-				this->game->background.setScale(
-				float(event.size.width) / float(this->game->background.getTexture()->getSize().x),
-				float(event.size.height) / float(this->game->background.getTexture()->getSize().y));
-				break;
-			}
+			
 			case sf::Event::KeyPressed:
 			{
 				if (event.key.code == sf::Keyboard::Escape)
 				{
-					std::cout << "Saliendo" << std::endl;
 					this->game->window.close();
 					break;
 				}
@@ -61,8 +73,7 @@ void GameStateStart::handleInput()
 				if (event.key.code == sf::Keyboard::L)
 				{
 					std::cout << "Entrando en modo building" << std::endl;
-					//this->game->pushState(new GameStateBuilding(this->game));
-					this->loadGame();
+					this->enterBuildMode();
 					break;
 				}
 			}
@@ -73,7 +84,7 @@ void GameStateStart::handleInput()
 	return;
 }
 
-void GameStateStart::loadGame()
+void GameStateStart::enterBuildMode()
 {
 	this->game->pushState(new GameStateBuilding(this->game));
 

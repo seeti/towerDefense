@@ -30,7 +30,6 @@ void GameStateStart::update(const float dt)
 
 void GameStateStart::cargaFondo()
 {
-	this->game->texmgr.loadTexture("background", "media/bg.jpg");
 	this->game->background.setTexture(this->game->texmgr.getRef("background"));
 }
 

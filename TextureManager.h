@@ -23,9 +23,7 @@ public:
 	sf::Texture& getRef(const std::string& texture);
 
 	/* Constructor */
-	TextureManager()
-	{
-	}
+	TextureManager();
 };
 
 #endif /* TEXTUREMANAGER_H */

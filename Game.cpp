@@ -5,6 +5,8 @@
 
 #include "Game.h"
 #include "GameState.h"
+#include "ObjectManager.h"
+
 
 void Game::pushState(GameState* state)
 {
@@ -49,6 +51,7 @@ void Game::gameLoop()
 		peekState()->handleInput();
 		peekState()->update(dt);
 		this->window.clear(sf::Color::Black);
+		gObjManager.onTick();
 		peekState()->draw(dt);
 		this->window.display();
 	}

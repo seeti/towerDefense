@@ -9,7 +9,7 @@
 
 class GameState;
 
-class Game
+extern class Game
 {
 public:
 
@@ -29,6 +29,6 @@ public:
 
 	Game();
 	~Game();
-};
+} gGame;
 
 #endif /* GAME_HPP */

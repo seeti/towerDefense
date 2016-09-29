@@ -51,8 +51,8 @@ void Game::gameLoop()
 		peekState()->handleInput();
 		peekState()->update(dt);
 		this->window.clear(sf::Color::Black);
-		gObjManager.onTick(this);
 		peekState()->draw(dt);
+		peekState()->onTick();
 		this->window.display();
 	}
 }

@@ -79,7 +79,7 @@ void GameStateBuilding::handleInput()
 							std::cout << "Action = Emplaza torre en " << sf::Mouse::getPosition().x << "/" << sf::Mouse::getPosition().y << std::endl;
 							this->actionState = ActionState::NONE;
 							Torre* torre = new Torre();
-							torre->placeAt(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+							torre->placeAt(sf::Mouse::getPosition(this->game->window).x, sf::Mouse::getPosition(this->game->window).y);
 							this->game->window.draw(torre->getSprite());
 							gObjManager.add(torre);
 						}
@@ -88,6 +88,11 @@ void GameStateBuilding::handleInput()
 			}
 		}
 	}
+}
+
+void GameStateBuilding::onTick()
+{
+	gObjManager.onTick(game);
 }
 
 void GameStateBuilding::leaveBuildMode()

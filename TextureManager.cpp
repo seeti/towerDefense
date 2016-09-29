@@ -24,6 +24,5 @@ sf::Texture& TextureManager::getRef(const std::string& texture)
 TextureManager::TextureManager()
 {
 	loadTexture("background", "media/bg.jpg");
-	loadTexture("torreta", "media/torreta.png");
 }
 

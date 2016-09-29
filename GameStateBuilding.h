@@ -2,7 +2,7 @@
 
 #include "GameState.h"
 
-enum class ActionState {NONE, HUMAN, FIRE, WATER};
+enum class ActionState {NONE, HUMAN, FIRE, WATER, BUILDING};
 
 class GameStateBuilding : public GameState
 {

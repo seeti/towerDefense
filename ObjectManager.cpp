@@ -1,9 +1,12 @@
 #include "ObjectManager.h"
+#include "GameState.h"
 
 
 
 ObjectManager::ObjectManager()
 {
+	mList.empty();
+	mList.clear();
 }
 
 
@@ -32,13 +35,23 @@ void ObjectManager::remove(ObjBase* obj)
 	}
 }
 
-void ObjectManager::onTick()
+void ObjectManager::onTick(Game* game)
 {
-	if (mList.size() <= 0)
+	if (mList.size() < 1)
 		return;
-	for (size_t i = mList.size(); i > 0; i--)
+	for (size_t i = 0; i < mList.size(); i++)
 	{
-		if (!mList.at(i)->onTick())
-			mList.erase(mList.end() - i);
+		ObjBase* obj = mList.at(i);
+		if (!obj)
+		{
+			mList.erase(mList.begin() + i);
+			continue;
+		}
+		if (!obj->onTick())
+		{
+			mList.erase(mList.begin() + i);
+			continue;
+		}
+		game->window.draw(obj->getSprite());
 	}
 }

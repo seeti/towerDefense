@@ -1,6 +1,9 @@
 #include <iostream>
 #include "GameStateStart.h"
 #include "GameStateBuilding.h"
+#include "Game.h"
+#include "ObjectManager.h"
+#include "Torre.h"
 
 GameStateBuilding::GameStateBuilding(Game* game)
 {
@@ -31,33 +34,57 @@ void GameStateBuilding::handleInput()
 	{
 		switch (event.type)
 		{
-		case sf::Event::KeyPressed:
-			switch (event.key.code)
+			case sf::Event::KeyPressed:
+				switch (event.key.code)
+				{
+					case sf::Keyboard::Escape:
+						//this->game->window.close();
+						this->leaveBuildMode();
+						break;
+
+					case sf::Keyboard::Y:
+						std::cout << "ActionState = NONE" << std::endl;
+						this->actionState = ActionState::NONE;
+						break;
+
+					case sf::Keyboard::U:
+						std::cout << "ActionState = HUMAN" << std::endl;
+						this->actionState = ActionState::HUMAN;
+						break;
+
+					case sf::Keyboard::I:
+						std::cout << "ActionState = FIRE" << std::endl;
+						this->actionState = ActionState::FIRE;
+						break;
+
+					case sf::Keyboard::O:
+						std::cout << "ActionState = WATER" << std::endl;
+						this->actionState = ActionState::WATER;
+						break;
+
+					case sf::Keyboard::H:
+						std::cout << "ActionState = CREAR TORRE" << std::endl;
+						this->actionState = ActionState::BUILDING;
+						break;
+				}
+				break;
+			case sf::Event::MouseButtonPressed:
 			{
-				case sf::Keyboard::Escape:
-					//this->game->window.close();
-					this->leaveBuildMode();
-					break;
-
-				case sf::Keyboard::Y:
-					std::cout << "ActionState = NONE" << std::endl;
-					this->actionState = ActionState::NONE;
-					break;
-
-				case sf::Keyboard::U:
-					std::cout << "ActionState = HUMAN" << std::endl;
-					this->actionState = ActionState::HUMAN;
-					break;
-
-				case sf::Keyboard::I:
-					std::cout << "ActionState = FIRE" << std::endl;
-					this->actionState = ActionState::FIRE;
-					break;
-
-				case sf::Keyboard::O:
-					std::cout << "ActionState = WATER" << std::endl;
-					this->actionState = ActionState::WATER;
-					break;
+				switch (event.mouseButton.button)
+				{
+					case sf::Mouse::Left:
+						std::cout << "Action = Pulsa boton Izquierdo" << std::endl;
+						if (this->actionState == ActionState::BUILDING)
+						{
+							std::cout << "Action = Emplaza torre en " << sf::Mouse::getPosition().x << "/" << sf::Mouse::getPosition().y << std::endl;
+							this->actionState = ActionState::NONE;
+							Torre* torre = new Torre();
+							torre->placeAt(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+							this->game->window.draw(torre->getSprite());
+							gObjManager.add(torre);
+						}
+						break;
+				}
 			}
 		}
 	}

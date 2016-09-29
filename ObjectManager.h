@@ -1,7 +1,9 @@
 #pragma once
 
 #include <vector>
+#include <SFML/Graphics.hpp>
 #include "ObjBase.h"
+#include "Game.h"
 
 /*
 	@Brief: Clase que se encarga de recorrer todos los Objetos existentes en el juego y de hacerles saber que tienen que hacer cosas.
@@ -26,6 +28,6 @@ public:
 	/*
 		@Brief: Loop que recorre todos los objetos y les hace un onTick, para que hagan sus cosas.
 	*/
-	void onTick();
+	void onTick(Game* game);
 } gObjManager;
 

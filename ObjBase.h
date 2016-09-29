@@ -1,18 +1,24 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 #include <SFML/System/Clock.hpp>
+#include "Posicion.h"
 
 /*
  * Clase madre para todos los objetos del mundo que pueden/o con los que se puede interactuar. eg: Torres, personajes ...
 */
 class ObjBase
 {
-private:
-	sf::Texture mTexture;
+protected:
+	sf::Sprite sfSprite;
+
+	void setSprite(sf::Sprite);
 public:
+	Posicion p;
 	ObjBase();
 	~ObjBase();
-	sf::Texture getTexture();
+	sf::Sprite getSprite();
 	virtual bool onTick();
+	virtual bool placeAt(int x, int y);
 	void onCreate();
 };

@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="GUI">
-      <UniqueIdentifier>{33859884-7039-4e3c-9bad-ca11cf844d31}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,12 +45,6 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="GUIComponent.cpp">
-      <Filter>GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Container.cpp">
-      <Filter>GUI</Filter>
-    </ClCompile>
     <ClCompile Include="Posicion.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
@@ -85,12 +76,6 @@
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIComponent.h">
-      <Filter>GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Container.h">
-      <Filter>GUI</Filter>
     </ClInclude>
     <ClInclude Include="Posicion.h">
       <Filter>Archivos de encabezado</Filter>

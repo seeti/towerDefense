@@ -159,12 +159,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationHandler.cpp" />
-    <ClCompile Include="Container.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateBuilding.cpp" />
     <ClCompile Include="GameStateStart.cpp" />
-    <ClCompile Include="GUIComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ObjBase.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
@@ -174,12 +172,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationHandler.h" />
-    <ClInclude Include="Container.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateBuilding.h" />
     <ClInclude Include="GameStateStart.h" />
-    <ClInclude Include="GUIComponent.h" />
     <ClInclude Include="ObjBase.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Posicion.h" />

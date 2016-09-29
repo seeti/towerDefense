@@ -2,8 +2,6 @@
 #include "TextureManager.h"
 #include "Game.h"
 
-
-
 Torre::Torre() : ObjBase()
 {
 	onLoadTexture();

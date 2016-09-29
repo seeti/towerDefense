@@ -35,15 +35,22 @@ void GameStateStart::cargaFondo()
 
 void GameStateStart::createMenu()
 {
-	sf::String menu[3] = {"Jugar", "Opciones", "Salir"};
-	
-	for each (sf::String var in menu)
+	sf::Font fuenteMenu;
+	if (!fuenteMenu.loadFromFile("media/big_noodle_titling_oblique.ttf"))
 	{
-		std::cout << (std::string)var << std::endl;
+		std::cout << "ERROR CARGANDO LA FUENTE DEL MENU" << std::endl;
 	}
 
-	sf::RectangleShape rectBoton;
+	for (int i = 0; i < Menu_QTY ; i++) {
 
+		std::cout << "Opcion: " << StringsMenu[i] << std::endl;
+		sf::RectangleShape rectBoton;
+		sf::Text textoOpcionMenu;
+		textoOpcionMenu.setFont(fuenteMenu);
+		textoOpcionMenu.setString(StringsMenu[i]);
+		textoOpcionMenu.setPosition(100, 100);
+		this->game->window.draw(textoOpcionMenu);
+	}
 }
 
 void GameStateStart::handleInput()

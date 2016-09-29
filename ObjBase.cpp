@@ -35,6 +35,7 @@ bool ObjBase::placeAt(int x, int y)
 	if (p.moveTo(x, y))
 	{
 		sfSprite.setPosition((float)x, (float)y);
+		sfSprite.setOrigin(sfSprite.getGlobalBounds().width / 2, sfSprite.getGlobalBounds().height / 2);
 		return true;
 	}
 	return false;

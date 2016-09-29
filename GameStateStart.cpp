@@ -1,6 +1,7 @@
 #include "GameStateStart.h"
 #include "GameStateBuilding.h"
 #include <iostream>
+#include <array>
 
 GameStateStart::GameStateStart(Game* game)
 {
@@ -35,11 +36,9 @@ void GameStateStart::cargaFondo()
 
 void GameStateStart::createMenu()
 {
-	sf::String menu[3] = {"Jugar", "Opciones", "Salir"};
-	
-	for each (sf::String var in menu)
+	for (int i = 0; i < Menu_QTY; i++)
 	{
-		std::cout << (std::string)var << std::endl;
+		std::cout << StringsMenu[i] << std::endl;
 	}
 
 	sf::RectangleShape rectBoton;

@@ -6,8 +6,23 @@
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
 
+
 class GameStateStart : public GameState
 {
+	enum OpcionesMenu
+	{
+		Menu_Jugar,
+		Menu_Opciones,
+		Menu_Salir,
+		Menu_QTY
+	};
+
+	const char* StringsMenu[Menu_QTY] =
+	{
+		"Jugar",
+		"Opciones",
+		"Salir"
+	};
 private:
 	sf::View view;
 	void cargaFondo();

@@ -161,8 +161,8 @@
     <ClCompile Include="AnimationHandler.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
-    <ClCompile Include="GameStateBuilding.cpp" />
-    <ClCompile Include="GameStateStart.cpp" />
+    <ClCompile Include="GameStatePlay.cpp" />
+    <ClCompile Include="GameStateMainMenu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MouseCursor.cpp" />
     <ClCompile Include="ObjBase.cpp" />
@@ -176,8 +176,8 @@
     <ClInclude Include="AnimationHandler.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
-    <ClInclude Include="GameStateBuilding.h" />
-    <ClInclude Include="GameStateStart.h" />
+    <ClInclude Include="GameStatePlay.h" />
+    <ClInclude Include="GameStateMainMenu.h" />
     <ClInclude Include="MouseCursor.h" />
     <ClInclude Include="ObjBase.h" />
     <ClInclude Include="ObjectManager.h" />

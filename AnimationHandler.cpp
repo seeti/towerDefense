@@ -12,7 +12,7 @@ void AnimationHandler::addAnim(Animation& anim)
 
 void AnimationHandler::update(const float dt)
 {
-	if (currentAnim >= this->animations.size() || currentAnim < 0) return;
+	if (currentAnim >= (int)this->animations.size() || currentAnim < 0) return;
 
 	float duration = this->animations[currentAnim].duration;
 

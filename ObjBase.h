@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/System/Clock.hpp>
+#include <SFML/Graphics/Rect.hpp>
 #include "Posicion.h"
 #include "UID.h"
 
@@ -20,8 +21,11 @@ public:
 	ObjBase();
 	~ObjBase();
 	sf::Sprite getSprite();
+	sf::Rect<float> getFixedBounds();
 	virtual bool onTick();
-	virtual bool placeAt(int x, int y);
+	virtual bool placeAt(int x, int y, bool bIgnoreChecks = false);
+	virtual const char* getObjectName() = 0;
+	virtual char* getIconSrc() = 0;
 	void onCreate();
 	sf::FloatRect getAbsoluteRect();
 	UID getUID();

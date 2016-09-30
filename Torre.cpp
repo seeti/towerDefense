@@ -14,9 +14,19 @@ Torre::~Torre()
 {
 }
 
+char* Torre::getIconSrc()
+{
+	return "media/torreta2.png";
+}
+
+const char* Torre::getObjectName()
+{
+	return "torreta";
+}
+
 void Torre::onLoadTexture()
 {
-	gGame.texmgr.loadTexture("torreta", "media/torreta.png");
+	gGame.texmgr.loadTexture(getObjectName(), getIconSrc());
 	sfTexture = gGame.texmgr.getRef("torreta");
 	sf::Sprite sprite(sfTexture);
 	setSprite(sprite);

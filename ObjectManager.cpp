@@ -7,7 +7,6 @@ ObjectManager::ObjectManager()
 {
 	mList.empty();
 	mList.clear();
-	uidManager = new UID();
 }
 
 
@@ -58,22 +57,43 @@ void ObjectManager::onTick(Game* game)
 		game->window.draw(obj->getSprite());
 	}
 }
-ObjBase* ObjectManager::findObjectAt(sf::Vector2i pos)
 
+ObjBase* ObjectManager::findObjectAt(sf::Vector2i pos)
 {
 	if (mList.size() < 1)
-		return NULL;
+		return nullptr;
 	for (size_t i = 0; i < mList.size(); i++)
 	{
 		ObjBase* obj = mList.at(i);
 		if (!obj)
 			continue;
-		if (obj->getSprite().getGlobalBounds().contains(pos.x, pos.y))
+		if (obj->getFixedBounds().contains(pos.x, pos.y))
 			return obj;
 		//if (obj->getAbsoluteRect().contains(pos.x, pos.y))
 		//	return obj;
 	}
-	return NULL;
+	return nullptr;
+}
+
+ObjBase * ObjectManager::checkCollision(ObjBase * objNuevo)
+{
+	if (mList.size() < 1)
+		return nullptr;
+	if (!objNuevo)
+		return nullptr;
+	for (size_t i = 0; i < mList.size(); i++)
+	{
+		ObjBase* obj = mList.at(i);
+		if (!obj)
+			continue;
+		if (obj == objNuevo)
+			continue;
+		if (obj->getSprite().getGlobalBounds().intersects(objNuevo->getSprite().getGlobalBounds()))
+			return obj;
+		//if (obj->getAbsoluteRect().contains(pos.x, pos.y))
+		//	return obj;
+	}
+	return nullptr;
 }
 
 UID ObjectManager::generateUID()

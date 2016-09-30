@@ -4,6 +4,7 @@
 
 GameState::GameState()
 {
+	placingObject = nullptr;
 }
 
 

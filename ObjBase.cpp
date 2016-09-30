@@ -2,7 +2,7 @@
 #include "ObjBase.h"
 #include "ObjectManager.h"
 #include "Game.h"
-
+#include <iostream>
 
 ObjBase::ObjBase()
 {
@@ -19,6 +19,16 @@ sf::Sprite ObjBase::getSprite()
 	return sfSprite;
 }
 
+sf::Rect<float> ObjBase::getFixedBounds()
+{
+	sf::Rect<float> rect(sfSprite.getGlobalBounds());
+	rect.top -= 5;
+	rect.left -= 5;
+	rect.height += 10;
+	rect.width += 10;
+	return rect;
+}
+
 void ObjBase::setSprite(sf::Sprite sprite)
 {
 	sfSprite = sprite;
@@ -31,11 +41,21 @@ bool ObjBase::onTick()
 	return true;
 }
 
-bool ObjBase::placeAt(int x, int y)
+bool ObjBase::placeAt(int x, int y, bool bIgnoreChecks)
 {
 	if (p.moveTo(x, y))
 	{
-		sfSprite.setPosition((float)x, (float)y);
+		ObjBase* obj = gObjManager.checkCollision(this);
+		if (obj && !bIgnoreChecks)
+		{
+			//No debo moverme. TODO: poner el sprite de color rojo en vez de bloquear su avance?
+		}
+		else
+		{
+			p.x = x;
+			p.y = y;
+		}
+		sfSprite.setPosition((float)p.x, (float)p.y);
 		sfSprite.setOrigin(sfSprite.getGlobalBounds().width / 2, sfSprite.getGlobalBounds().height / 2);
 		return true;
 	}

@@ -22,6 +22,14 @@ void GameStateBuilding::draw(const float dt)
 	//this->game->window.setView(this->gameView);
 	this->game->window.draw(this->game->backgroundBuilding);
 	gObjManager.onTick(game);
+	if (placingObject)
+	{
+		game->window.setMouseCursorVisible(false);	//al regenerar la pantalla se asigna de nuevo a true de manera automática, no es necesario deshacer esta linea.
+		sf::Texture texture;
+		if (!texture.loadFromFile(placingObject->getIconSrc()))
+			return;
+		game->window.draw(placingObject->getSprite());
+	}
 }
 
 void GameStateBuilding::update(const float dt)
@@ -40,6 +48,13 @@ void GameStateBuilding::handleInput()
 				switch (event.key.code)
 				{
 					case sf::Keyboard::Escape:
+
+						if (placingObject)
+						{
+							delete placingObject;
+							this->actionState = ActionState::NONE;
+							break;
+						}
 						//this->game->window.close();
 						this->leaveBuildMode();
 						break;
@@ -67,6 +82,8 @@ void GameStateBuilding::handleInput()
 					case sf::Keyboard::H:
 						std::cout << "ActionState = CREAR TORRE" << std::endl;
 						this->actionState = ActionState::BUILDING;
+						placingObject = new Torre();
+						placingObject->placeAt(sf::Mouse::getPosition(this->game->window).x, sf::Mouse::getPosition(this->game->window).y);
 						break;
 				}
 				break;
@@ -78,12 +95,13 @@ void GameStateBuilding::handleInput()
 						std::cout << "Action = Pulsa boton Izquierdo" << std::endl;
 						if (this->actionState == ActionState::BUILDING)
 						{
-							std::cout << "Action = Emplaza torre en " << sf::Mouse::getPosition().x << "/" << sf::Mouse::getPosition().y << std::endl;
 							this->actionState = ActionState::NONE;
-							Torre* torre = new Torre();
+							Torre* torre = (Torre*)placingObject;
 							torre->placeAt(sf::Mouse::getPosition(this->game->window).x, sf::Mouse::getPosition(this->game->window).y);
-							this->game->window.draw(torre->getSprite());
+							game->window.draw(torre->getSprite());
+							placingObject = nullptr;
 							gObjManager.add(torre);
+							std::cout << "Action = Emplaza torre en " << torre->getSprite().getPosition().x << "/" << torre->getSprite().getPosition().y << std::endl;
 						}
 						else
 						{
@@ -97,6 +115,11 @@ void GameStateBuilding::handleInput()
 			case sf::Event::MouseMoved:
 			{
 				objMouseOver = gObjManager.findObjectAt(sf::Mouse::getPosition(game->window));
+				if (placingObject)
+				{
+					placingObject->placeAt(sf::Mouse::getPosition(this->game->window).x, sf::Mouse::getPosition(this->game->window).y, objMouseOver ? false : true);
+					break;
+				}
 				if (objMouseOver)
 				{
 					MouseCursor Cursor(MouseCursor::HAND);

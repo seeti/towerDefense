@@ -1,6 +1,7 @@
 #include "GameStateStart.h"
 #include "GameStateBuilding.h"
 #include <iostream>
+#include <array>
 
 GameStateStart::GameStateStart(Game* game)
 {
@@ -34,12 +35,13 @@ void GameStateStart::cargaFondo()
 }
 
 void GameStateStart::createMenu()
-{
-	sf::Font fuenteMenu;
+{	sf::Font fuenteMenu;
 	if (!fuenteMenu.loadFromFile("media/big_noodle_titling_oblique.ttf"))
 	{
+		std::cout << (std::string)var << std::endl;
 		std::cout << "ERROR CARGANDO LA FUENTE DEL MENU" << std::endl;
 	}
+
 
 	for (int i = 0; i < Menu_QTY ; i++) {
 

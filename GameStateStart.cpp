@@ -47,13 +47,22 @@ void GameStateStart::createMenu()
 		this->game->window.close();
 	}
 
+	if (!this->bufferSonidoMenu.loadFromFile("media/click.wav"))
+	{
+		std::cout << "ERROR CARGANDO SONIDO DEL MENU" << std::endl;
+		this->game->window.close();
+	}
+
+	this->sonidoMenu.setBuffer(this->bufferSonidoMenu);
+	this->sonidoMenu.setVolume(10);
+
 	for (int i = 0; i < Menu_QTY; i++) {
 
 		std::cout << "Opcion: " << StringsMenu[i] << std::endl;
 		
 		this->textoOpcionMenu[i].setFont(fuenteMenu);
 		this->textoOpcionMenu[i].setString(StringsMenu[i]);
-		this->textoOpcionMenu[i].setPosition(100, i * 50);
+		this->textoOpcionMenu[i].setPosition(100.0f, i * 50.0f);
 	}
 }
 
@@ -82,11 +91,36 @@ void GameStateStart::handleInput()
 
 				if (event.key.code == sf::Keyboard::L)
 				{
-					std::cout << "Entrando en modo building" << std::endl;
+					//std::cout << "Entrando en modo building" << std::endl;
 					this->enterBuildMode();
 					break;
 				}
 			}
+
+			case sf::Event::MouseMoved:
+			{
+				sf::Vector2f mousePos = sf::Vector2f((float)sf::Mouse::getPosition(this->game->window).x, (float)sf::Mouse::getPosition(this->game->window).y);
+				//std::cout << "X: " << mousePos.x << " Y: " << mousePos.y << std::endl;
+
+				for (int i = 0; i < Menu_QTY; i++) {
+
+					sf::FloatRect textRect = textoOpcionMenu[i].getGlobalBounds();
+					textoOpcionMenu[i].setCharacterSize(30);
+
+					if (textRect.contains(mousePos))
+					{
+						//std::cout << "ESTA DENTRO DEL BOTON " << (std::string)textoOpcionMenu[i].getString() << std::endl;
+						textoOpcionMenu[i].setCharacterSize(36);
+						
+						if (this->reproducirSonido)
+						{
+							this->sonidoMenu.play();
+							this->reproducirSonido = false;
+						}
+					}
+				}
+			}
+
 			default: break;
 		}
 	}

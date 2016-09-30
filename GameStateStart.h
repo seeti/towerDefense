@@ -3,6 +3,7 @@
 #ifndef GAMESTATESTART_H
 #define GAMESTATESTART_H
 
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
 
@@ -29,7 +30,10 @@ private:
 	void enterBuildMode();
 
 	sf::Font fuenteMenu;
+	sf::SoundBuffer bufferSonidoMenu;
+	sf::Sound sonidoMenu;
 	sf::Text textoOpcionMenu[3];
+	bool reproducirSonido = true;
 
 public:
 	virtual void draw(const float dt);

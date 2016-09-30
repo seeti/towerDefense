@@ -22,6 +22,11 @@ void GameStateStart::draw(const float dt)
 	this->game->window.clear(sf::Color::Black);
 	this->game->window.draw(this->game->background);
 
+	for (int i = 0; i < Menu_QTY; i++) {
+
+		this->game->window.draw(textoOpcionMenu[i]);
+	}
+
 	return;
 }
 
@@ -35,23 +40,20 @@ void GameStateStart::cargaFondo()
 }
 
 void GameStateStart::createMenu()
-{	sf::Font fuenteMenu;
-	if (!fuenteMenu.loadFromFile("media/big_noodle_titling_oblique.ttf"))
+{
+	if (!this->fuenteMenu.loadFromFile("media/big_noodle_titling_oblique.ttf"))
 	{
-		std::cout << (std::string)var << std::endl;
 		std::cout << "ERROR CARGANDO LA FUENTE DEL MENU" << std::endl;
+		this->game->window.close();
 	}
 
-
-	for (int i = 0; i < Menu_QTY ; i++) {
+	for (int i = 0; i < Menu_QTY; i++) {
 
 		std::cout << "Opcion: " << StringsMenu[i] << std::endl;
-		sf::RectangleShape rectBoton;
-		sf::Text textoOpcionMenu;
-		textoOpcionMenu.setFont(fuenteMenu);
-		textoOpcionMenu.setString(StringsMenu[i]);
-		textoOpcionMenu.setPosition(100, 100);
-		this->game->window.draw(textoOpcionMenu);
+		
+		this->textoOpcionMenu[i].setFont(fuenteMenu);
+		this->textoOpcionMenu[i].setString(StringsMenu[i]);
+		this->textoOpcionMenu[i].setPosition(100, i * 50);
 	}
 }
 
@@ -94,6 +96,7 @@ void GameStateStart::handleInput()
 
 void GameStateStart::onTick()
 {
+	
 }
 
 void GameStateStart::enterBuildMode()

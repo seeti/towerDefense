@@ -9,11 +9,6 @@
 class GameStateStart : public GameState
 {
 
-
-
-
-
-
 enum OpcionesMenu {
 	Menu_Jugar,
 	Menu_Opciones,
@@ -27,12 +22,14 @@ const char* StringsMenu[Menu_QTY] = {
 	"Salir"
 };
 
-
 private:
 	sf::View view;
 	void cargaFondo();
 	void createMenu();
 	void enterBuildMode();
+
+	sf::Font fuenteMenu;
+	sf::Text textoOpcionMenu[3];
 
 public:
 	virtual void draw(const float dt);

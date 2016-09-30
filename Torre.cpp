@@ -1,10 +1,12 @@
 #include "Torre.h"
 #include "TextureManager.h"
 #include "Game.h"
+#include <iostream>
 
 Torre::Torre() : ObjBase()
 {
 	onLoadTexture();
+	std::cout << "Creando torre con uid 0x" << getUID().toInt();
 }
 
 

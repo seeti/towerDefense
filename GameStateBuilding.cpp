@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "ObjectManager.h"
 #include "Torre.h"
+#include "MouseCursor.h"
 
 GameStateBuilding::GameStateBuilding(Game* game)
 {
@@ -12,6 +13,7 @@ GameStateBuilding::GameStateBuilding(Game* game)
 
 	this->game->texmgr.loadTexture("background-building", "media/background_building.jpg");
 	this->game->backgroundBuilding.setTexture(this->game->texmgr.getRef("background-building"));
+	objMouseOver = NULL;
 }
 
 void GameStateBuilding::draw(const float dt)
@@ -19,11 +21,11 @@ void GameStateBuilding::draw(const float dt)
 	this->game->window.clear(sf::Color::Black);
 	//this->game->window.setView(this->gameView);
 	this->game->window.draw(this->game->backgroundBuilding);
+	gObjManager.onTick(game);
 }
 
 void GameStateBuilding::update(const float dt)
 {
-
 }
 
 void GameStateBuilding::handleInput()
@@ -83,16 +85,32 @@ void GameStateBuilding::handleInput()
 							this->game->window.draw(torre->getSprite());
 							gObjManager.add(torre);
 						}
+						else
+						{
+							if (objMouseOver)
+								std::cout << "Click en torre con UID 0x" << objMouseOver->getUID().toInt();
+						}
 						break;
+				}
+				break;
+			}
+			case sf::Event::MouseMoved:
+			{
+				objMouseOver = gObjManager.findObjectAt(sf::Mouse::getPosition(game->window));
+				if (objMouseOver)
+				{
+					MouseCursor Cursor(MouseCursor::HAND);
+					Cursor.set(game->window.getSystemHandle());
+					//std::cout << "Raton en torre con UID 0x" << objMouseOver->getUID().getUID();
+				}
+				else
+				{
+					MouseCursor Cursor(MouseCursor::NORMAL);
+					Cursor.set(game->window.getSystemHandle());
 				}
 			}
 		}
 	}
-}
-
-void GameStateBuilding::onTick()
-{
-	gObjManager.onTick(game);
 }
 
 void GameStateBuilding::leaveBuildMode()

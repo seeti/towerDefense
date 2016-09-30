@@ -6,6 +6,7 @@
 
 ObjBase::ObjBase()
 {
+	uid = gObjManager.generateUID();
 }
 
 
@@ -44,4 +45,22 @@ bool ObjBase::placeAt(int x, int y)
 void ObjBase::onCreate()
 {
 	gObjManager.add(this);
+}
+
+sf::FloatRect ObjBase::getAbsoluteRect()
+{
+	float fixedX = sfSprite.getGlobalBounds().width / 2;
+	float fixedY = sfSprite.getGlobalBounds().height / 2;
+	sf::FloatRect rect(
+		p.y - fixedY,
+		p.x - fixedX,
+		p.y + fixedY,
+		p.x - fixedX
+		);
+	return rect;
+}
+
+UID ObjBase::getUID()
+{
+	return uid;
 }

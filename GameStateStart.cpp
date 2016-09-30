@@ -128,11 +128,6 @@ void GameStateStart::handleInput()
 	return;
 }
 
-void GameStateStart::onTick()
-{
-	
-}
-
 void GameStateStart::enterBuildMode()
 {
 	this->game->pushState(new GameStateBuilding(this->game));

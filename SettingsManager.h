@@ -31,8 +31,8 @@ private:
 public:
 	bool keyExists(const std::string &key) const;
 	//template <typename ValueType> ValueType getValueOfKey(const std::string &key, ValueType const &defaultValue = ValueType()) const;
-	int getIntValueOfKey(const std::string &key);
-	std::string getStringValueOfKey(const std::string &key);
+	int getIntValueOfKey(const std::string &key, const int &defaultValue);
+	std::string getStringValueOfKey(const std::string &key, const std::string &defaultValue);
 
 	SettingsManager(const std::string &fileName);
 	~SettingsManager();

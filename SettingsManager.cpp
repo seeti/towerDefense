@@ -148,13 +148,19 @@ ValueType SettingsManager::getValueOfKey(const std::string &key, ValueType const
 }
 */
 
-int SettingsManager::getIntValueOfKey(const std::string &key)
+int SettingsManager::getIntValueOfKey(const std::string &key, const int &defaultValue)
 {
+	if (!this->keyExists(key))
+		return defaultValue;
+
 	return std::stoi(this->contents.find(key)->second);
 }
 
-std::string SettingsManager::getStringValueOfKey(const std::string &key)
+std::string SettingsManager::getStringValueOfKey(const std::string &key, const std::string &defaultValue)
 {
+	if (!this->keyExists(key))
+		return defaultValue;
+
 	return this->contents.find(key)->second;
 }
 

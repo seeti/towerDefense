@@ -6,6 +6,7 @@
 #include <stack>
 #include <SFML/Graphics.hpp>
 #include "TextureManager.h"
+#include "SettingsManager.h"
 
 class GameState;
 

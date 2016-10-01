@@ -168,6 +168,7 @@
     <ClCompile Include="ObjBase.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Posicion.cpp" />
+    <ClCompile Include="SettingsManager.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Torre.cpp" />
     <ClCompile Include="UID.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="ObjBase.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Posicion.h" />
+    <ClInclude Include="SettingsManager.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Torre.h" />
     <ClInclude Include="UID.h" />

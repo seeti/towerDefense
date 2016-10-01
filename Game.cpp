@@ -7,6 +7,8 @@
 #include "GameState.h"
 #include "ObjectManager.h"
 
+//Añadido por seeti para hacer unas pruebas
+#include "SettingsManager.h"
 
 void Game::pushState(GameState* state)
 {
@@ -42,6 +44,15 @@ void Game::gameLoop()
 {
 	sf::Clock clock;
 
+	// PRUEBAS SEETI
+
+	SettingsManager stMng("config.cfg");
+
+	int prueba = stMng.getValueOfKey<int>("ScreenWidth");
+	std::cout << "Screen Width: " << prueba << std::endl;
+
+	// FIN PRUEBAS SEETI
+
 	while (this->window.isOpen())
 	{
 		sf::Time elapsed = clock.restart();
@@ -58,7 +69,7 @@ void Game::gameLoop()
 
 Game::Game()
 {
-	this->window.create(sf::VideoMode(1280, 720), "vik");
+	this->window.create(sf::VideoMode(1280, 720), "Tower Defense");
 	this->window.setFramerateLimit(60);
 }
 

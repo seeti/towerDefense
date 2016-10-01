@@ -62,6 +62,8 @@ Game::Game()
 	int screenHeight = settingsManager.getIntValueOfKey("ScreenHeight", 720);
 
 	this->window.create(sf::VideoMode(screenWidth, screenHeight), "Tower Defense");
+	
+	int frameRateLimit = settingsManager.getIntValueOfKey("ScreenFrameRateLimit", 60);
 	this->window.setFramerateLimit(60);
 }
 

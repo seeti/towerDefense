@@ -21,7 +21,7 @@ T SettingsManager::convertirStringToPrimitiva(std::string const &val)
 	return returnVal;
 }
 
-std::string SettingsManager::convertirStringToPrimitiva(std::string const &val)
+template <> std::string SettingsManager::convertirStringToPrimitiva(std::string const &val)
 {
 	return val;
 }
@@ -136,13 +136,26 @@ bool SettingsManager::keyExists(const std::string &key) const
 	return this->contents.find(key) != this->contents.end();
 }
 
+/* OJO! Este método da errores y tiene que ser revisado
+ *
 template <typename ValueType>
-ValueType SettingsManager::getValueOfKey(const std::string &key, ValueType const &defaultValue = ValueType()) const
+ValueType SettingsManager::getValueOfKey(const std::string &key, ValueType const &defaultValue) const
 {
 	if (!this->keyExists(key))
 		return defaultValue;
 
 	return this->convertirStringToPrimitiva<ValueType>(this->contents.find(key)->second);
+}
+*/
+
+int SettingsManager::getIntValueOfKey(const std::string &key)
+{
+	return std::stoi(this->contents.find(key)->second);
+}
+
+std::string SettingsManager::getStringValueOfKey(const std::string &key)
+{
+	return this->contents.find(key)->second;
 }
 
 SettingsManager::SettingsManager(const std::string &fileName)

@@ -10,7 +10,7 @@ class SettingsManager
 private:
 	template <typename T> std::string convertirPrimitivaToString(T const &val);
 	template <typename T> T convertirStringToPrimitiva(std::string const &val);
-	std::string convertirStringToPrimitiva(std::string const &val);
+	template <> std::string convertirStringToPrimitiva(std::string const &val);
 	
 	std::string fileName;
 	std::map<std::string, std::string> contents;
@@ -30,7 +30,9 @@ private:
 	
 public:
 	bool keyExists(const std::string &key) const;
-	template <typename ValueType> ValueType getValueOfKey(const std::string &key, ValueType const &defaultValue = ValueType()) const;
+	//template <typename ValueType> ValueType getValueOfKey(const std::string &key, ValueType const &defaultValue = ValueType()) const;
+	int getIntValueOfKey(const std::string &key);
+	std::string getStringValueOfKey(const std::string &key);
 
 	SettingsManager(const std::string &fileName);
 	~SettingsManager();

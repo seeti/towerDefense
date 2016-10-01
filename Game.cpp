@@ -48,8 +48,11 @@ void Game::gameLoop()
 
 	SettingsManager stMng("config.cfg");
 
-	int prueba = stMng.getValueOfKey<int>("ScreenWidth");
+	int prueba = stMng.getIntValueOfKey("ScreenWidth");
 	std::cout << "Screen Width: " << prueba << std::endl;
+
+	//if (stMng.keyExists("ScreenWidth"))
+	//	std::cout << "existe." << std::endl;
 
 	// FIN PRUEBAS SEETI
 

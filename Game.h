@@ -26,6 +26,8 @@ public:
 	void changeState(GameState* state);
 	GameState* peekState();
 
+	SettingsManager settingsManager;
+
 	void gameLoop();
 
 	Game();

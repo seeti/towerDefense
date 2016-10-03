@@ -2,13 +2,11 @@
 #include "GameState.h"
 #include <iostream>
 
-
 ObjectManager::ObjectManager()
 {
 	mList.empty();
 	mList.clear();
 }
-
 
 ObjectManager::~ObjectManager()
 {

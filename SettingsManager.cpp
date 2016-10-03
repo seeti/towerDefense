@@ -164,10 +164,19 @@ std::string SettingsManager::getStringValueOfKey(const std::string &key, const s
 	return this->contents.find(key)->second;
 }
 
-SettingsManager::SettingsManager(const std::string &fileName)
+void SettingsManager::open(const std::string &fileName)
 {
 	this->fileName = fileName;
 	this->extractKeys();
+}
+
+SettingsManager::SettingsManager()
+{
+}
+
+SettingsManager::SettingsManager(const std::string &fileName)
+{
+	this->open(fileName);
 }
 
 SettingsManager::~SettingsManager()

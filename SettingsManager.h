@@ -29,11 +29,13 @@ private:
 	void extractKeys();
 	
 public:
+	void open(const std::string &fileName);
 	bool keyExists(const std::string &key) const;
 	//template <typename ValueType> ValueType getValueOfKey(const std::string &key, ValueType const &defaultValue = ValueType()) const;
 	int getIntValueOfKey(const std::string &key, const int &defaultValue);
 	std::string getStringValueOfKey(const std::string &key, const std::string &defaultValue);
 
+	SettingsManager();
 	SettingsManager(const std::string &fileName);
 	~SettingsManager();
 };

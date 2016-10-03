@@ -57,7 +57,7 @@ void Game::gameLoop()
 
 Game::Game()
 {
-	SettingsManager settingsManager("config.cfg");
+	this->settingsManager.open("config.cfg");
 	int screenWidth = settingsManager.getIntValueOfKey("ScreenWidth", 1280);
 	int screenHeight = settingsManager.getIntValueOfKey("ScreenHeight", 720);
 

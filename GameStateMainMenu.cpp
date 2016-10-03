@@ -77,7 +77,7 @@ void GameStateMainMenu::handleInput()
 			/* Close the window */
 			case sf::Event::Closed:
 			{
-				game->window.close();
+				this->game->window.close();
 				break;
 			}
 			
@@ -91,10 +91,15 @@ void GameStateMainMenu::handleInput()
 
 				if (event.key.code == sf::Keyboard::L)
 				{
-					//std::cout << "Entrando en modo building" << std::endl;
 					this->enterBuildMode();
 					break;
 				}
+			}
+
+			case sf::Event::MouseButtonPressed:
+			{
+				if ((event.mouseButton.button == sf::Mouse::Left) && this->botonHover == OpcionesMenu::Menu_Jugar)
+					this->enterBuildMode();
 			}
 
 			case sf::Event::MouseMoved:
@@ -112,6 +117,8 @@ void GameStateMainMenu::handleInput()
 						//std::cout << "ESTA DENTRO DEL BOTON " << (std::string)textoOpcionMenu[i].getString() << std::endl;
 						textoOpcionMenu[i].setCharacterSize(36);
 						
+						this->botonHover = i;
+
 						if (this->reproducirSonido)
 						{
 							this->sonidoMenu.play();

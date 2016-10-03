@@ -14,6 +14,13 @@ GameStatePlay::GameStatePlay(Game* game)
 	this->game->texmgr.loadTexture("background-building", "media/background_building.jpg");
 	this->game->backgroundBuilding.setTexture(this->game->texmgr.getRef("background-building"));
 	objMouseOver = NULL;
+
+	// Inicialización del circulo que indica el rango de la torre
+	//this->rangeCircle.setRadius(100.f);
+	this->rangeCircle.setFillColor(sf::Color(200, 0, 0, 50));
+	this->rangeCircle.setOutlineColor(sf::Color(200, 0, 0));
+	this->rangeCircle.setOutlineThickness(1);
+	//this->rangeCircle.setOrigin(this->rangeCircle.getGlobalBounds().height / 2, this->rangeCircle.getGlobalBounds().width / 2);
 }
 
 void GameStatePlay::draw(const float dt)
@@ -30,6 +37,9 @@ void GameStatePlay::draw(const float dt)
 			return;
 		game->window.draw(placingObject->getSprite());
 	}
+
+	if (showRangeCircle)
+		game->window.draw(this->rangeCircle);
 }
 
 void GameStatePlay::update(const float dt)
@@ -125,11 +135,20 @@ void GameStatePlay::handleInput()
 					MouseCursor Cursor(MouseCursor::HAND);
 					Cursor.set(game->window.getSystemHandle());
 					//std::cout << "Raton en torre con UID 0x" << objMouseOver->getUID().getUID();
+
+					// TODO: El rango se obtendrá mediante la torre, dependiendo su tipo
+					this->rangeCircle.setRadius(100.f);
+					this->rangeCircle.setPosition(objMouseOver->p.x, objMouseOver->p.y);
+					this->rangeCircle.setOrigin(this->rangeCircle.getGlobalBounds().height / 2, this->rangeCircle.getGlobalBounds().width / 2);
+
+					showRangeCircle = true;
 				}
 				else
 				{
 					MouseCursor Cursor(MouseCursor::NORMAL);
 					Cursor.set(game->window.getSystemHandle());
+
+					showRangeCircle = false;
 				}
 			}
 		}

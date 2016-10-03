@@ -49,11 +49,14 @@ bool ObjBase::placeAt(int x, int y, bool bIgnoreChecks)
 		if (obj && !bIgnoreChecks)
 		{
 			//No debo moverme. TODO: poner el sprite de color rojo en vez de bloquear su avance?
+			sfSprite.setColor(sf::Color::Red);
 		}
 		else
 		{
 			p.x = x;
 			p.y = y;
+
+			sfSprite.setColor(sf::Color::White);
 		}
 		sfSprite.setPosition((float)p.x, (float)p.y);
 		sfSprite.setOrigin(sfSprite.getGlobalBounds().width / 2, sfSprite.getGlobalBounds().height / 2);

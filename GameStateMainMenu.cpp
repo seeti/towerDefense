@@ -56,13 +56,14 @@ void GameStateMainMenu::createMenu()
 	this->sonidoMenu.setBuffer(this->bufferSonidoMenu);
 	this->sonidoMenu.setVolume(10);
 
+	int screenWidth = game->settingsManager.getIntValueOfKey("ScreenWidth", 1280);
+	int screenHeight = game->settingsManager.getIntValueOfKey("ScreenHeight", 720);
+
 	for (int i = 0; i < Menu_QTY; i++) {
 
-		std::cout << "Opcion: " << StringsMenu[i] << std::endl;
-		
 		this->textoOpcionMenu[i].setFont(fuenteMenu);
 		this->textoOpcionMenu[i].setString(StringsMenu[i]);
-		this->textoOpcionMenu[i].setPosition(100.0f, i * 50.0f);
+		this->textoOpcionMenu[i].setPosition(screenWidth * 0.1, ((screenHeight * 0.8) + i * screenHeight * 0.05));
 	}
 }
 
@@ -100,30 +101,31 @@ void GameStateMainMenu::handleInput()
 			{
 				if ((event.mouseButton.button == sf::Mouse::Left) && this->botonHover == OpcionesMenu::Menu_Jugar)
 					this->enterBuildMode();
+
+				if ((event.mouseButton.button == sf::Mouse::Left) && this->botonHover == OpcionesMenu::Menu_Salir)
+					this->game->window.close();
 			}
 
 			case sf::Event::MouseMoved:
 			{
 				sf::Vector2f mousePos = sf::Vector2f((float)sf::Mouse::getPosition(this->game->window).x, (float)sf::Mouse::getPosition(this->game->window).y);
-				//std::cout << "X: " << mousePos.x << " Y: " << mousePos.y << std::endl;
 
 				for (int i = 0; i < Menu_QTY; i++) {
 
 					sf::FloatRect textRect = textoOpcionMenu[i].getGlobalBounds();
-					textoOpcionMenu[i].setCharacterSize(30);
+					textoOpcionMenu[i].setCharacterSize( this->game->settingsManager.getIntValueOfKey("ScreenHeight", 720) * 0.05 );
 
 					if (textRect.contains(mousePos))
 					{
-						//std::cout << "ESTA DENTRO DEL BOTON " << (std::string)textoOpcionMenu[i].getString() << std::endl;
-						textoOpcionMenu[i].setCharacterSize(36);
+						textoOpcionMenu[i].setCharacterSize( this->game->settingsManager.getIntValueOfKey("ScreenHeight", 720) * 0.06 );
 						
-						this->botonHover = i;
-
-						if (this->reproducirSonido)
+						if (this->reproducirSonido && this->botonHover != i)
 						{
 							this->sonidoMenu.play();
-							this->reproducirSonido = false;
 						}
+
+						this->botonHover = i;
+
 					}
 				}
 			}

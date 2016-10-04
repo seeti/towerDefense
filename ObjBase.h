@@ -14,6 +14,7 @@ class ObjBase
 protected:
 	sf::Sprite sfSprite;
 	UID uid;
+	float fRange;
 
 	void setSprite(sf::Sprite);
 public:
@@ -29,4 +30,6 @@ public:
 	void onCreate();
 	sf::FloatRect getAbsoluteRect();
 	UID getUID();
+	float getRange();
+	void setRange(float range);
 };

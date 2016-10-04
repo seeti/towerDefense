@@ -37,8 +37,12 @@ void GameStatePlay::draw(const float dt)
 			return;
 		game->window.draw(placingObject->getSprite());
 	}
-	else if (objMouseOver)
+	else if (objMouseOver && objMouseOver->getRange() > 0.f)
 	{
+		// TODO: El rango se obtendrá mediante la torre, dependiendo su tipo
+		this->rangeCircle.setRadius(objMouseOver->getRange());
+		this->rangeCircle.setPosition(objMouseOver->p.x, objMouseOver->p.y);
+		this->rangeCircle.setOrigin(this->rangeCircle.getGlobalBounds().height / 2, this->rangeCircle.getGlobalBounds().width / 2);
 		game->window.draw(this->rangeCircle);
 	}
 }
@@ -138,12 +142,6 @@ void GameStatePlay::handleInput()
 				{
 					MouseCursor Cursor(MouseCursor::HAND);
 					Cursor.set(game->window.getSystemHandle());
-					//std::cout << "Raton en torre con UID 0x" << objMouseOver->getUID().getUID();
-
-					// TODO: El rango se obtendrá mediante la torre, dependiendo su tipo
-					this->rangeCircle.setRadius(100.f);
-					this->rangeCircle.setPosition(objMouseOver->p.x, objMouseOver->p.y);
-					this->rangeCircle.setOrigin(this->rangeCircle.getGlobalBounds().height / 2, this->rangeCircle.getGlobalBounds().width / 2);
 				}
 				else
 				{

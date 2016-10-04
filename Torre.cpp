@@ -7,6 +7,7 @@ Torre::Torre() : ObjBase()
 {
 	onLoadTexture();
 	std::cout << "Creando torre con uid 0x" << getUID().toInt();
+	fRange = 80.f;
 }
 
 

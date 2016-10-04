@@ -12,6 +12,7 @@ ObjBase::ObjBase()
 
 ObjBase::~ObjBase()
 {
+	fRange = 0.f;
 }
 
 sf::Sprite ObjBase::getSprite()
@@ -85,4 +86,14 @@ sf::FloatRect ObjBase::getAbsoluteRect()
 UID ObjBase::getUID()
 {
 	return uid;
+}
+
+float ObjBase::getRange()
+{
+	return fRange;
+}
+
+void ObjBase::setRange(float range)
+{
+	fRange = range;
 }

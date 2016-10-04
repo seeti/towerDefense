@@ -65,7 +65,7 @@ ObjBase* ObjectManager::findObjectAt(sf::Vector2i pos)
 		ObjBase* obj = mList.at(i);
 		if (!obj)
 			continue;
-		if (obj->getFixedBounds().contains(pos.x, pos.y))
+		if (obj->getFixedBounds().contains((float)pos.x, (float)pos.y))
 			return obj;
 		//if (obj->getAbsoluteRect().contains(pos.x, pos.y))
 		//	return obj;

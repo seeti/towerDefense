@@ -41,5 +41,5 @@ bool Torre::onTick()
 
 bool Torre::moveTo(int x, int y)
 {
-	return (bool)(ObjBase*)this->p.moveTo(x, y);
+	return (bool)static_cast<ObjBase*>(this)->p.moveTo(x, y);
 }

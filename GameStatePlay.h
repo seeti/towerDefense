@@ -16,7 +16,6 @@ private:
 	void leaveBuildMode();
 	ObjBase* objMouseOver;	// El puntero del ratón se encuentra encima de este objeto dinámico.
 	sf::CircleShape rangeCircle;
-	bool showRangeCircle = false;
 
 public:
 

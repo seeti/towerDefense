@@ -37,9 +37,10 @@ void GameStatePlay::draw(const float dt)
 			return;
 		game->window.draw(placingObject->getSprite());
 	}
-
-	if (showRangeCircle)
+	else if (objMouseOver)
+	{
 		game->window.draw(this->rangeCircle);
+	}
 }
 
 void GameStatePlay::update(const float dt)
@@ -62,6 +63,7 @@ void GameStatePlay::handleInput()
 						if (placingObject)
 						{
 							delete placingObject;
+							placingObject = nullptr;
 							this->actionState = ActionState::NONE;
 							break;
 						}
@@ -105,8 +107,10 @@ void GameStatePlay::handleInput()
 						std::cout << "Action = Pulsa boton Izquierdo" << std::endl;
 						if (this->actionState == ActionState::BUILDING)
 						{
-							this->actionState = ActionState::NONE;
+							if (gObjManager.findObjectAt(sf::Mouse::getPosition(game->window)))	// Si no se puede mover a esa posicion por que está obstruida abortamos el click.
+								break;
 							Torre* torre = (Torre*)placingObject;
+							this->actionState = ActionState::NONE;
 							torre->placeAt(sf::Mouse::getPosition(this->game->window).x, sf::Mouse::getPosition(this->game->window).y);
 							game->window.draw(torre->getSprite());
 							placingObject = nullptr;
@@ -140,15 +144,11 @@ void GameStatePlay::handleInput()
 					this->rangeCircle.setRadius(100.f);
 					this->rangeCircle.setPosition(objMouseOver->p.x, objMouseOver->p.y);
 					this->rangeCircle.setOrigin(this->rangeCircle.getGlobalBounds().height / 2, this->rangeCircle.getGlobalBounds().width / 2);
-
-					showRangeCircle = true;
 				}
 				else
 				{
 					MouseCursor Cursor(MouseCursor::NORMAL);
 					Cursor.set(game->window.getSystemHandle());
-
-					showRangeCircle = false;
 				}
 			}
 		}

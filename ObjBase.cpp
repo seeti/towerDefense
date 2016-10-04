@@ -55,7 +55,6 @@ bool ObjBase::placeAt(int x, int y, bool bIgnoreChecks)
 		{
 			p.x = x;
 			p.y = y;
-
 			sfSprite.setColor(sf::Color::White);
 		}
 		sfSprite.setPosition((float)p.x, (float)p.y);

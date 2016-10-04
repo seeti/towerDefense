@@ -10,6 +10,7 @@ GameStateMainMenu::GameStateMainMenu(Game* game)
 	this->view.setSize(pos);
 	pos *= 0.5f;
 	this->view.setCenter(pos);
+	this->botonHover = Menu_QTY;
 
 	this->cargaFondo();
 	this->createMenu();
@@ -84,26 +85,36 @@ void GameStateMainMenu::handleInput()
 			
 			case sf::Event::KeyPressed:
 			{
-				if (event.key.code == sf::Keyboard::Escape)
+				switch (event.key.code)
 				{
-					this->game->window.close();
-					break;
-				}
+					case sf::Keyboard::Escape:
+						this->game->window.close();
+						break;
 
-				if (event.key.code == sf::Keyboard::L)
-				{
-					this->enterBuildMode();
-					break;
+					case sf::Keyboard::L:
+						this->enterBuildMode();
+						break;
+					default:
+						break;
 				}
 			}
 
 			case sf::Event::MouseButtonPressed:
 			{
-				if ((event.mouseButton.button == sf::Mouse::Left) && this->botonHover == OpcionesMenu::Menu_Jugar)
-					this->enterBuildMode();
+				if (event.mouseButton.button == sf::Mouse::Left || this->botonHover == OpcionesMenu::Menu_QTY)	// No nos importan los clicks con el botón derecho.
+					break;
+				switch (this->botonHover)
+				{
+					case OpcionesMenu::Menu_Jugar:
+						this->enterBuildMode();
+						break;
 
-				if ((event.mouseButton.button == sf::Mouse::Left) && this->botonHover == OpcionesMenu::Menu_Salir)
-					this->game->window.close();
+					case OpcionesMenu::Menu_Salir:
+						this->game->window.close();
+						break;
+					default:
+						break;
+				}
 			}
 
 			case sf::Event::MouseMoved:
@@ -125,12 +136,15 @@ void GameStateMainMenu::handleInput()
 						}
 
 						this->botonHover = i;
+						break;	// Encontrado botón, no necesitamos recorrer más código.
 
 					}
 				}
+				this->botonHover = Menu_QTY;	// No hemos encontrado botón, reseteamos el atributo en caso de que haya tenido algún otro valor anteriormente.
+				break;
 			}
-
-			default: break;
+			default:
+				break;
 		}
 	}
 

@@ -35,7 +35,7 @@ private:
 	sf::Text textoOpcionMenu[3];
 	bool reproducirSonido = true;
 
-	int botonHover = -1;
+	int botonHover;
 
 public:
 	virtual void draw(const float dt);

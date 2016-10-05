@@ -21,6 +21,16 @@ GameStatePlay::GameStatePlay(Game* game)
 	this->rangeCircle.setOutlineColor(sf::Color(200, 0, 0));
 	this->rangeCircle.setOutlineThickness(1);
 	//this->rangeCircle.setOrigin(this->rangeCircle.getGlobalBounds().height / 2, this->rangeCircle.getGlobalBounds().width / 2);
+
+	/* De momento lo dejo comentado y ya haremos pruebas
+
+	this->game->texmgr.loadTexture("prueba-anim", "media/03-01.jpg");
+	
+	prueba.setTexture(&this->game->texmgr.getRef("prueba-anim"));
+	prueba.addFramesLine(4, 3, 0);
+	
+	pruebix:(&prueba, AnimatedSprite::Playing, sf::seconds(0.1));
+	*/
 }
 
 void GameStatePlay::draw(const float dt)
@@ -45,6 +55,13 @@ void GameStatePlay::draw(const float dt)
 		this->rangeCircle.setOrigin(this->rangeCircle.getGlobalBounds().height / 2, this->rangeCircle.getGlobalBounds().width / 2);
 		game->window.draw(this->rangeCircle);
 	}
+
+	/* De momento lo dejo comentado y ya haremos pruebas
+	
+	pruebix.setAnimation(&prueba);
+	pruebix.play();
+	game->window.draw(pruebix);
+	*/
 }
 
 void GameStatePlay::update(const float dt)

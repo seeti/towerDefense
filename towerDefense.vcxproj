@@ -158,7 +158,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnimationHandler.cpp" />
+    <ClCompile Include="AnimatedSprite.cpp" />
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStatePlay.cpp" />
@@ -174,7 +175,8 @@
     <ClCompile Include="UID.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimationHandler.h" />
+    <ClInclude Include="AnimatedSprite.h" />
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStatePlay.h" />

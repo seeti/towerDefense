@@ -27,9 +27,6 @@
     <ClCompile Include="TextureManager.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationHandler.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="ObjBase.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
@@ -57,6 +54,12 @@
     <ClCompile Include="SettingsManager.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedSprite.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -66,9 +69,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationHandler.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ObjBase.h">
@@ -96,6 +96,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="SettingsManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedSprite.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

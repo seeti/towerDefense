@@ -1,30 +1,24 @@
-/*
+#ifndef ANIMATION_INCLUDE
+#define ANIMATION_INCLUDE
 
-#pragma once
-
-#include <SFML/Graphics.hpp>
 #include <vector>
-#include "AnimatedSprite.h"
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Texture.hpp>
 
 class Animation
 {
 public:
-	Animation(sf::Texture* texture = nullptr);
-	~Animation();
-	
-	void setTexture(sf::Texture* texture);
-	sf::Texture* getTexture() const;
+	Animation();
 
-	Animation &addFrame(const sf::IntRect &rect);
-	Animation &addFramesLine(int number_x, int number_y, int line);
-	Animation &addFramesColumn(int number_x, int number_y, int column);
-	size_t size() const;
-	const sf::IntRect &getRect(size_t index) const;
+	void addFrame(sf::IntRect rect);
+	void setSpriteSheet(const sf::Texture& texture);
+	const sf::Texture* getSpriteSheet() const;
+	std::size_t getSize() const;
+	const sf::IntRect& getFrame(std::size_t n) const;
 
 private:
-	friend class AnimatedSprite;
-	std::vector<sf::IntRect> _frames;
-	sf::Texture* _texture;
+	std::vector<sf::IntRect> m_frames;
+	const sf::Texture* m_texture;
 };
 
-*/
+#endif // ANIMATION_INCLUDE

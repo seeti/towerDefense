@@ -142,7 +142,7 @@ void GameStatePlay::handleInput()
 						else
 						{
 							if (objMouseOver)
-								std::cout << "Click en torre con UID 0x" << objMouseOver->getUID().toInt();
+								std::cout << "Click en torre con UID 0x" << objMouseOver->getUID().toInt() << std::endl;
 						}
 						break;
 				}

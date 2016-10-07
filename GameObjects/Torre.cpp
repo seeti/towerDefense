@@ -1,6 +1,6 @@
 #include "Torre.h"
-#include "TextureManager.h"
-#include "Game.h"
+#include "../GameAnimations/TextureManager.h"
+#include "../Game.h"
 #include <iostream>
 
 Torre::Torre() : ObjBase()

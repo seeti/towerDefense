@@ -4,8 +4,8 @@
 #include <SFML/System.hpp>
 
 #include "Game.h"
-#include "GameState.h"
-#include "ObjectManager.h"
+#include "GameStates\GameState.h"
+#include "GameObjects\ObjectManager.h"
 
 void Game::pushState(GameState* state)
 {

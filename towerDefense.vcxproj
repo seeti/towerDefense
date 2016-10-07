@@ -158,37 +158,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnimatedSprite.cpp" />
-    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameState.cpp" />
-    <ClCompile Include="GameStatePlay.cpp" />
-    <ClCompile Include="GameStateMainMenu.cpp" />
+    <ClCompile Include="GameAnimations\AnimatedSprite.cpp" />
+    <ClCompile Include="GameAnimations\Animation.cpp" />
+    <ClCompile Include="GameAnimations\MouseCursor.cpp" />
+    <ClCompile Include="GameAnimations\TextureManager.cpp" />
+    <ClCompile Include="GameObjects\ObjBase.cpp" />
+    <ClCompile Include="GameObjects\ObjectManager.cpp" />
+    <ClCompile Include="GameObjects\Posicion.cpp" />
+    <ClCompile Include="GameObjects\Torre.cpp" />
+    <ClCompile Include="GameObjects\UID.cpp" />
+    <ClCompile Include="GameStates\GameState.cpp" />
+    <ClCompile Include="GameStates\GameStateMainMenu.cpp" />
+    <ClCompile Include="GameStates\GameStatePlay.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MouseCursor.cpp" />
-    <ClCompile Include="ObjBase.cpp" />
-    <ClCompile Include="ObjectManager.cpp" />
-    <ClCompile Include="Posicion.cpp" />
     <ClCompile Include="SettingsManager.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
-    <ClCompile Include="Torre.cpp" />
-    <ClCompile Include="UID.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimatedSprite.h" />
-    <ClInclude Include="Animation.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GameState.h" />
-    <ClInclude Include="GameStatePlay.h" />
-    <ClInclude Include="GameStateMainMenu.h" />
-    <ClInclude Include="MouseCursor.h" />
-    <ClInclude Include="ObjBase.h" />
-    <ClInclude Include="ObjectManager.h" />
-    <ClInclude Include="Posicion.h" />
+    <ClInclude Include="GameAnimations\AnimatedSprite.h" />
+    <ClInclude Include="GameAnimations\Animation.h" />
+    <ClInclude Include="GameAnimations\MouseCursor.h" />
+    <ClInclude Include="GameAnimations\TextureManager.h" />
+    <ClInclude Include="GameObjects\ObjBase.h" />
+    <ClInclude Include="GameObjects\ObjectManager.h" />
+    <ClInclude Include="GameObjects\Posicion.h" />
+    <ClInclude Include="GameObjects\Torre.h" />
+    <ClInclude Include="GameObjects\UID.h" />
+    <ClInclude Include="GameStates\GameState.h" />
+    <ClInclude Include="GameStates\GameStateMainMenu.h" />
+    <ClInclude Include="GameStates\GameStatePlay.h" />
     <ClInclude Include="SettingsManager.h" />
-    <ClInclude Include="TextureManager.h" />
-    <ClInclude Include="Torre.h" />
-    <ClInclude Include="UID.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

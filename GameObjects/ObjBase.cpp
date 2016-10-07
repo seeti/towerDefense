@@ -1,7 +1,7 @@
 #include <iostream>
 #include "ObjBase.h"
 #include "ObjectManager.h"
-#include "Game.h"
+#include "../Game.h"
 #include <iostream>
 
 ObjBase::ObjBase()

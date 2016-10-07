@@ -1,10 +1,10 @@
 #include <iostream>
 #include "GameStateMainMenu.h"
 #include "GameStatePlay.h"
-#include "Game.h"
-#include "ObjectManager.h"
-#include "Torre.h"
-#include "MouseCursor.h"
+#include "../Game.h"
+#include "../GameObjects/ObjectManager.h"
+#include "../GameObjects/Torre.h"
+#include "../GameAnimations/MouseCursor.h"
 
 GameStatePlay::GameStatePlay(Game* game)
 {
@@ -29,8 +29,8 @@ GameStatePlay::GameStatePlay(Game* game)
 	for (int i = 0; i <= 5; i++) 
 		animacionTorreta.addFrame(sf::IntRect(i * 69, 0, 69, 69));
 	
-	animatedSprite:(sf::seconds(0.2), true, false);
-	animatedSprite.setPosition(sf::Vector2f(1280.0 / 2, 720.0 / 2));
+	animatedSprite = AnimatedSprite(sf::seconds(0.2f), true, false);
+	animatedSprite.setPosition(sf::Vector2f(1280.0f / 2.0f, 720.0f / 2.0f));
 }
 
 void GameStatePlay::draw(const float dt)

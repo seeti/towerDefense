@@ -1,6 +1,6 @@
 #include "Game.h"
-#include "GameStateMainMenu.h"
-#include "ObjectManager.h"
+#include "GameStates/GameStateMainMenu.h"
+#include "GameObjects/ObjectManager.h"
 
 Game gGame;
 ObjectManager gObjManager;

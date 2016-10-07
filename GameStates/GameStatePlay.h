@@ -1,8 +1,8 @@
 #pragma once
 
 #include "GameState.h"
-#include "ObjBase.h"
-#include "AnimatedSprite.h"
+#include "../GameObjects/ObjBase.h"
+#include "../Gameanimations/AnimatedSprite.h"
 
 enum class ActionState {NONE, HUMAN, FIRE, WATER, BUILDING};
 

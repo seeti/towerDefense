@@ -1,5 +1,5 @@
 #include "ObjectManager.h"
-#include "GameState.h"
+#include "../GameStates/GameState.h"
 #include <iostream>
 
 ObjectManager::ObjectManager()

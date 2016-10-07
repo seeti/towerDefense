@@ -2,8 +2,8 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "../Game.h"
 #include "ObjBase.h"
-#include "Game.h"
 #include "UID.h"
 
 /*

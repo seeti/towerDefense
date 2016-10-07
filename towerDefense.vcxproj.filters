@@ -1,108 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Archivos de código fuente">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="GameStates">
+      <UniqueIdentifier>{1b381379-e7d8-40fd-a158-05fec973cf80}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{1d09d605-f224-4a8e-bb63-c33e820272a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de recursos">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="GameAnimations">
+      <UniqueIdentifier>{bad5767a-aef6-4a2a-b30c-65da31281c4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="GameStates\GameState.cpp">
+      <Filter>GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="GameStates\GameStateMainMenu.cpp">
+      <Filter>GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="GameStates\GameStatePlay.cpp">
+      <Filter>GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="GameAnimations\AnimatedSprite.cpp">
+      <Filter>GameAnimations</Filter>
     </ClCompile>
-    <ClCompile Include="ObjBase.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="GameAnimations\Animation.cpp">
+      <Filter>GameAnimations</Filter>
     </ClCompile>
-    <ClCompile Include="Torre.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="GameObjects\ObjBase.cpp">
+      <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectManager.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="GameObjects\ObjectManager.cpp">
+      <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Posicion.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="GameObjects\Posicion.cpp">
+      <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="MouseCursor.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="GameObjects\Torre.cpp">
+      <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="UID.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="GameObjects\UID.cpp">
+      <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="GameStateMainMenu.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="GameAnimations\TextureManager.cpp">
+      <Filter>GameAnimations</Filter>
     </ClCompile>
-    <ClCompile Include="GameStatePlay.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="GameAnimations\MouseCursor.cpp">
+      <Filter>GameAnimations</Filter>
     </ClCompile>
-    <ClCompile Include="SettingsManager.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimatedSprite.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
+    <ClCompile Include="SettingsManager.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Game.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="GameStates\GameState.h">
+      <Filter>GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="GameStates\GameStateMainMenu.h">
+      <Filter>GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="GameStates\GameStatePlay.h">
+      <Filter>GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="ObjBase.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="GameAnimations\AnimatedSprite.h">
+      <Filter>GameAnimations</Filter>
     </ClInclude>
-    <ClInclude Include="Torre.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="GameAnimations\Animation.h">
+      <Filter>GameAnimations</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectManager.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="GameObjects\ObjBase.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Posicion.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="GameObjects\ObjectManager.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="MouseCursor.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="GameObjects\Posicion.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="UID.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="GameObjects\Torre.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="GameStateMainMenu.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="GameObjects\UID.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="GameStatePlay.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="GameAnimations\TextureManager.h">
+      <Filter>GameAnimations</Filter>
     </ClInclude>
-    <ClInclude Include="SettingsManager.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="GameAnimations\MouseCursor.h">
+      <Filter>GameAnimations</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimatedSprite.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="SettingsManager.h" />
   </ItemGroup>
 </Project>

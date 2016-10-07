@@ -52,6 +52,6 @@ public:
 	*/
 	UID generateUID();
 
-	void draw(Game* game);
+	void draw(Game* game, const float dt = 0.0f );
 } gObjManager;
 

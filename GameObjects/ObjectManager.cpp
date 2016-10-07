@@ -96,7 +96,7 @@ UID ObjectManager::generateUID()
 	return getNextUID();
 }
 
-void ObjectManager::draw(Game * game)
+void ObjectManager::draw(Game * game, const float dt)
 {
 	if (mList.size() < 1)
 		return;
@@ -105,6 +105,6 @@ void ObjectManager::draw(Game * game)
 		ObjBase* obj = mList.at(i);
 		if (!obj)		//Should not happen, since onTick already manages it.
 			continue;	//Just keep going and forget it.
-		game->window.draw(obj->getSprite());
+		obj->draw(game, dt);
 	}
 }

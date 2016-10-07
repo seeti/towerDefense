@@ -1,9 +1,10 @@
 #include "Torre.h"
+#include "ObjectManager.h"
 #include "../GameAnimations/TextureManager.h"
 #include "../Game.h"
 #include <iostream>
 
-Torre::Torre() : ObjBase()
+Torre::Torre() : StaticObject()
 {
 	onLoadTexture();
 	std::cout << "Creando torre con uid 0x" << getUID().toInt();
@@ -18,6 +19,30 @@ Torre::~Torre()
 char* Torre::getIconSrc()
 {
 	return "media/torreta2.png";
+}
+
+bool Torre::placeAt(int x, int y, bool bIgnoreChecks)
+{
+	if (p.moveTo(x, y))
+	{
+		ObjBase* obj = gObjManager.checkCollision(this);
+		sf::Sprite sprite = getSprite();
+		if (obj && !bIgnoreChecks)
+		{
+			//No debo moverme. TODO: poner el sprite de color rojo en vez de bloquear su avance?
+			sprite.setColor(sf::Color::Red);
+		}
+		else
+		{
+			p.x = x;
+			p.y = y;
+			sprite.setColor(sf::Color::White);
+		}
+		sprite.setPosition((float)p.x, (float)p.y);
+		sprite.setOrigin(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2);
+		return true;
+	}
+	return false;
 }
 
 const char* Torre::getObjectName()

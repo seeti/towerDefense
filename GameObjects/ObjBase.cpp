@@ -15,14 +15,9 @@ ObjBase::~ObjBase()
 	fRange = 0.f;
 }
 
-sf::Sprite ObjBase::getSprite()
-{
-	return sfSprite;
-}
-
 sf::Rect<float> ObjBase::getFixedBounds()
 {
-	sf::Rect<float> rect(sfSprite.getGlobalBounds());
+	sf::Rect<float> rect(getGlobalBounds());
 	rect.top -= 5;
 	rect.left -= 5;
 	rect.height += 10;
@@ -30,9 +25,18 @@ sf::Rect<float> ObjBase::getFixedBounds()
 	return rect;
 }
 
-void ObjBase::setSprite(sf::Sprite sprite)
+sf::FloatRect ObjBase::getAbsoluteRect()
 {
-	sfSprite = sprite;
+	sf::Sprite sprite = getSprite();
+	float fixedX = sprite.getGlobalBounds().width / 2;
+	float fixedY = sprite.getGlobalBounds().height / 2;
+	sf::FloatRect rect(
+		p.y - fixedY,
+		p.x - fixedX,
+		p.y + fixedY,
+		p.x - fixedX
+	);
+	return rect;
 }
 
 bool ObjBase::onTick(const float dt)
@@ -44,43 +48,12 @@ bool ObjBase::onTick(const float dt)
 
 bool ObjBase::placeAt(int x, int y, bool bIgnoreChecks)
 {
-	if (p.moveTo(x, y))
-	{
-		ObjBase* obj = gObjManager.checkCollision(this);
-		if (obj && !bIgnoreChecks)
-		{
-			//No debo moverme. TODO: poner el sprite de color rojo en vez de bloquear su avance?
-			sfSprite.setColor(sf::Color::Red);
-		}
-		else
-		{
-			p.x = x;
-			p.y = y;
-			sfSprite.setColor(sf::Color::White);
-		}
-		sfSprite.setPosition((float)p.x, (float)p.y);
-		sfSprite.setOrigin(sfSprite.getGlobalBounds().width / 2, sfSprite.getGlobalBounds().height / 2);
-		return true;
-	}
 	return false;
 }
 
 void ObjBase::onCreate()
 {
 	gObjManager.add(this);
-}
-
-sf::FloatRect ObjBase::getAbsoluteRect()
-{
-	float fixedX = sfSprite.getGlobalBounds().width / 2;
-	float fixedY = sfSprite.getGlobalBounds().height / 2;
-	sf::FloatRect rect(
-		p.y - fixedY,
-		p.x - fixedX,
-		p.y + fixedY,
-		p.x - fixedX
-		);
-	return rect;
 }
 
 UID ObjBase::getUID()

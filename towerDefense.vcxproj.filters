@@ -51,6 +51,15 @@
     <ClCompile Include="SettingsManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObjects\AnimatedObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Enemigo.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\StaticObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameStates\GameState.h">
@@ -63,9 +72,6 @@
       <Filter>GameStates</Filter>
     </ClInclude>
     <ClInclude Include="GameAnimations\AnimatedSprite.h">
-      <Filter>GameAnimations</Filter>
-    </ClInclude>
-    <ClInclude Include="GameAnimations\Animation.h">
       <Filter>GameAnimations</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\ObjBase.h">
@@ -91,5 +97,17 @@
     </ClInclude>
     <ClInclude Include="Game.h" />
     <ClInclude Include="SettingsManager.h" />
+    <ClInclude Include="GameObjects\AnimatedObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameAnimations\Animation.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemigo.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\StaticObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

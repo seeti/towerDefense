@@ -36,9 +36,8 @@ GameStatePlay::GameStatePlay(Game* game)
 void GameStatePlay::draw(const float dt)
 {
 	this->game->window.clear(sf::Color::Black);
-	//this->game->window.setView(this->gameView);
 	this->game->window.draw(this->game->backgroundBuilding);
-	gObjManager.onTick(game);
+	gObjManager.draw(game);
 	if (placingObject)
 	{
 		game->window.setMouseCursorVisible(false);	//al regenerar la pantalla se asigna de nuevo a true de manera automática, no es necesario deshacer esta linea.
@@ -51,7 +50,7 @@ void GameStatePlay::draw(const float dt)
 	{
 		// TODO: El rango se obtendrá mediante la torre, dependiendo su tipo
 		this->rangeCircle.setRadius(objMouseOver->getRange());
-		this->rangeCircle.setPosition(objMouseOver->p.x, objMouseOver->p.y);
+		this->rangeCircle.setPosition((float)objMouseOver->p.x, (float)objMouseOver->p.y);
 		this->rangeCircle.setOrigin(this->rangeCircle.getGlobalBounds().height / 2, this->rangeCircle.getGlobalBounds().width / 2);
 		game->window.draw(this->rangeCircle);
 	}
@@ -66,6 +65,7 @@ void GameStatePlay::draw(const float dt)
 
 void GameStatePlay::update(const float dt)
 {
+	gObjManager.onTick(dt);
 }
 
 void GameStatePlay::handleInput()

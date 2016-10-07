@@ -64,7 +64,7 @@ void GameStateMainMenu::createMenu()
 
 		this->textoOpcionMenu[i].setFont(fuenteMenu);
 		this->textoOpcionMenu[i].setString(StringsMenu[i]);
-		this->textoOpcionMenu[i].setPosition(screenWidth * 0.1, ((screenHeight * 0.8) + i * screenHeight * 0.05));
+		this->textoOpcionMenu[i].setPosition((float)screenWidth * 0.1f, (((float)screenHeight * 0.8f) + (float)i * (float)screenHeight * 0.05f));
 	}
 }
 
@@ -124,11 +124,11 @@ void GameStateMainMenu::handleInput()
 				for (int i = 0; i < Menu_QTY; i++) {
 
 					sf::FloatRect textRect = textoOpcionMenu[i].getGlobalBounds();
-					textoOpcionMenu[i].setCharacterSize( this->game->settingsManager.getIntValueOfKey("ScreenHeight", 720) * 0.05 );
+					textoOpcionMenu[i].setCharacterSize( (unsigned int)(this->game->settingsManager.getIntValueOfKey("ScreenHeight", 720) * 0.05f) );
 
 					if (textRect.contains(mousePos))
 					{
-						textoOpcionMenu[i].setCharacterSize( this->game->settingsManager.getIntValueOfKey("ScreenHeight", 720) * 0.06 );
+						textoOpcionMenu[i].setCharacterSize( (unsigned int)(this->game->settingsManager.getIntValueOfKey("ScreenHeight", 720) * 0.06f) );
 						
 						if (this->reproducirSonido && this->botonHover != i)
 						{

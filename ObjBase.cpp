@@ -35,7 +35,7 @@ void ObjBase::setSprite(sf::Sprite sprite)
 	sfSprite = sprite;
 }
 
-bool ObjBase::onTick()
+bool ObjBase::onTick(const float dt)
 {
 	//std::cout << "Tick" << std::endl;
 	//gGame.window.draw(sfSprite);

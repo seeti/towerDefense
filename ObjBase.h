@@ -23,7 +23,7 @@ public:
 	~ObjBase();
 	sf::Sprite getSprite();
 	sf::Rect<float> getFixedBounds();
-	virtual bool onTick();
+	virtual bool onTick(const float dt);
 	virtual bool placeAt(int x, int y, bool bIgnoreChecks = false);
 	virtual const char* getObjectName() = 0;
 	virtual char* getIconSrc() = 0;

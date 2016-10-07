@@ -33,10 +33,16 @@ void Torre::onLoadTexture()
 	setSprite(sprite);
 }
 
-bool Torre::onTick()
+bool Torre::onTick(const float dt)
 {
-	/*if (!(ObjBase*)this->onTick())
-		return false;*/
+	elapsedPrimaryAttack += dt;
+	if (elapsedPrimaryAttack > primaryAttack)
+	{
+		std::cout << "Torre 0x" << getUID().toInt() << " ataca\n";
+		elapsedPrimaryAttack = 0.0f;
+		// TODO: Lanzar proyectiles desde aquí
+		// TODO2: crear un manager que controle todos los proyectiles, tanto sus trayectorias como destinos como el moverlos constantemente y hacer que impacten y hagan daño al acercarse al objetivo
+	}
 	return true;
 }
 

@@ -33,7 +33,7 @@ void ObjectManager::remove(ObjBase* obj)
 	}
 }
 
-void ObjectManager::onTick(Game* game)
+void ObjectManager::onTick(const float dt)
 {
 	if (mList.size() < 1)
 		return;
@@ -45,14 +45,11 @@ void ObjectManager::onTick(Game* game)
 			mList.erase(mList.begin() + i);
 			continue;
 		}
-		if (!obj->onTick())
+		if (!obj->onTick(dt))
 		{
 			mList.erase(mList.begin() + i);
 			continue;
 		}
-		/*std::cout << "Torre en " << obj->getSprite().getGlobalBounds().left <<" - "<< obj->getSprite().getGlobalBounds().width
-			<< " / " << obj->getSprite().getGlobalBounds().top << " - " << obj->getSprite().getGlobalBounds().height;*/
-		game->window.draw(obj->getSprite());
 	}
 }
 
@@ -97,4 +94,17 @@ ObjBase * ObjectManager::checkCollision(ObjBase * objNuevo)
 UID ObjectManager::generateUID()
 {
 	return getNextUID();
+}
+
+void ObjectManager::draw(Game * game)
+{
+	if (mList.size() < 1)
+		return;
+	for (size_t i = 0; i < mList.size(); i++)
+	{
+		ObjBase* obj = mList.at(i);
+		if (!obj)		//Should not happen, since onTick already manages it.
+			continue;	//Just keep going and forget it.
+		game->window.draw(obj->getSprite());
+	}
 }

@@ -31,7 +31,7 @@ public:
 		@Brief: Loop que recorre todos los objetos y les hace un onTick, para que hagan sus cosas.
 		@param Obj: objeto a borrar.
 	*/
-	void onTick(Game* game);
+	void onTick(const float dt);
 
 	/*
 		@brief: Busca un objeto en las coordenadas dadas (generalmente para obtener el objeto en el que se encuentra el cursor del ratón).
@@ -51,5 +51,7 @@ public:
 		return: UID a asignar
 	*/
 	UID generateUID();
+
+	void draw(Game* game);
 } gObjManager;
 

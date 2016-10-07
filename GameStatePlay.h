@@ -2,7 +2,7 @@
 
 #include "GameState.h"
 #include "ObjBase.h"
-#include "Animation.h"
+#include "AnimatedSprite.h"
 
 enum class ActionState {NONE, HUMAN, FIRE, WATER, BUILDING};
 
@@ -17,10 +17,14 @@ private:
 	void leaveBuildMode();
 	ObjBase* objMouseOver;	// El puntero del ratón se encuentra encima de este objeto dinámico.
 	sf::CircleShape rangeCircle;
+	
+	Animation animacionTorreta;
 
-	// De momento lo dejo comentado y ya haremos pruebas
-	//Animation prueba;
-	//AnimatedSprite pruebix;
+	AnimatedSprite animatedSprite;
+
+	float speed = 80.f;
+	bool noKeyWasPressed = true;
+	sf::Clock frameClock;
 
 public:
 

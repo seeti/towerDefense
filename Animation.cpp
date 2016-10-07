@@ -1,64 +1,31 @@
-/*
-
-#include <SFML/Graphics.hpp>
-#include <vector>
-
 #include "Animation.h"
 
-Animation::Animation(sf::Texture* texture) : _texture(texture)
+Animation::Animation() : m_texture(NULL)
 {
+
 }
 
-Animation::~Animation()
+void Animation::addFrame(sf::IntRect rect)
 {
+	m_frames.push_back(rect);
 }
 
-void Animation::setTexture(sf::Texture* texture)
+void Animation::setSpriteSheet(const sf::Texture& texture)
 {
-	_texture = texture;
+	m_texture = &texture;
 }
 
-sf::Texture* Animation::getTexture() const
+const sf::Texture* Animation::getSpriteSheet() const
 {
-	return _texture;
+	return m_texture;
 }
 
-size_t Animation::size() const
+std::size_t Animation::getSize() const
 {
-	return _frames.size();
+	return m_frames.size();
 }
 
-const sf::IntRect &Animation::getRect(size_t index) const
+const sf::IntRect& Animation::getFrame(std::size_t n) const
 {
-	return _frames[index];
+	return m_frames[n];
 }
-
-Animation &Animation::addFrame(const sf::IntRect &rect)
-{
-	_frames.emplace_back(rect);
-	return *this;
-}
-
-Animation &Animation::addFramesLine(int number_x, int number_y, int line)
-{
-	const sf::Vector2u size = _texture->getSize();
-	const float delta_x = size.x / float(number_x);
-	const float delta_y = size.y / float(number_y);
-
-	for (int i = 0; i < number_x; ++i)
-		addFrame(sf::IntRect(i*delta_x, line*delta_y, delta_x, delta_y));
-	return *this;
-}
-
-Animation &Animation::addFramesColumn(int number_x, int number_y, int column)
-{
-	const sf::Vector2u size = _texture->getSize();
-	const float delta_x = size.x / float(number_x);
-	const float delta_y = size.y / float(number_y);
-
-	for (int i = 0; i < number_y; ++i)
-		addFrame(sf::IntRect(column*delta_x, i*delta_y, delta_x, delta_y));
-	return *this;
-}
-
-*/

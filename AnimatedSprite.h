@@ -1,65 +1,48 @@
-/*
+#ifndef ANIMATEDSPRITE_INCLUDE
+#define ANIMATEDSPRITE_INCLUDE
 
-#include <functional>
-#include <assert.h>
-#include <iso646.h>
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/System/Time.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/System/Vector2.hpp>
+
 #include "Animation.h"
 
-#pragma once
 class AnimatedSprite : public sf::Drawable, public sf::Transformable
 {
 public:
-	AnimatedSprite(const AnimatedSprite&) = default;
-	AnimatedSprite &operator = (const AnimatedSprite&) = default;
-	AnimatedSprite(AnimatedSprite&&) = default;
-	AnimatedSprite &operator=(AnimatedSprite&&) = default;
+	explicit AnimatedSprite(sf::Time frameTime = sf::seconds(0.2f), bool paused = false, bool looped = true);
 
-	using FuncType = std::function<void()>;
-	static FuncType defaultFunc;
-	FuncType onFinished;
-	enum Status { Stopped, Paused, Playing };
-
-	AnimatedSprite(Animation* animation = nullptr,
-		Status status = Playing,
-		const sf::Time &deltaTime = sf::seconds(0.15),
-		bool loop = true,
-		int repeat = 0);
-
-	void setAnimation(Animation* animation);
-	Animation* getAnimation() const;
-
-	void setFrameTime(sf::Time deltaTime);
-	sf::Time getFrameTime() const;
-
-	void setLoop(bool loop);
-	bool getLoop() const;
-	void setRepeat(int nb);
-	int getRepeat() const;
-
+	void update(sf::Time deltaTime);
+	void setAnimation(const Animation& animation);
+	void setFrameTime(sf::Time time);
 	void play();
+	void play(const Animation& animation);
 	void pause();
 	void stop();
-	Status getStatus() const;
-
-	void setFrame(size_t index);
-	void setColor(const sf::Color &color);
-	void update(const sf::Time &deltaTime);
-
-	~AnimatedSprite();
+	void setLooped(bool looped);
+	void setColor(const sf::Color& color);
+	const Animation* getAnimation() const;
+	sf::FloatRect getLocalBounds() const;
+	sf::FloatRect getGlobalBounds() const;
+	bool isLooped() const;
+	bool isPlaying() const;
+	sf::Time getFrameTime() const;
+	void setFrame(std::size_t newFrame, bool resetTime = true);
 
 private:
-	Animation* _animation;
-	sf::Time _delta;
-	sf::Time _elapsed;
-	bool _loop;
-	int _repeat;
-	Status _status;
-	size_t _currentFrame;
-	sf::Vertex _vertices[4];
+	const Animation* m_animation;
+	sf::Time m_frameTime;
+	sf::Time m_currentTime;
+	std::size_t m_currentFrame;
+	bool m_isPaused;
+	bool m_isLooped;
+	const sf::Texture* m_texture;
+	sf::Vertex m_vertices[4];
 
-	void setFrame(size_t index, bool resetTime);
-	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
 };
 
-*/
+#endif // ANIMATEDSPRITE_INCLUDE

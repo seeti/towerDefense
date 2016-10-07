@@ -22,15 +22,15 @@ GameStatePlay::GameStatePlay(Game* game)
 	this->rangeCircle.setOutlineThickness(1);
 	//this->rangeCircle.setOrigin(this->rangeCircle.getGlobalBounds().height / 2, this->rangeCircle.getGlobalBounds().width / 2);
 
-	/* De momento lo dejo comentado y ya haremos pruebas
+	this->game->texmgr.loadTexture("prueba-anim", "media/prueba.png");
 
-	this->game->texmgr.loadTexture("prueba-anim", "media/03-01.jpg");
+	animacionTorreta.setSpriteSheet(this->game->texmgr.getRef("prueba-anim"));
+
+	for (int i = 0; i <= 5; i++) 
+		animacionTorreta.addFrame(sf::IntRect(i * 69, 0, 69, 69));
 	
-	prueba.setTexture(&this->game->texmgr.getRef("prueba-anim"));
-	prueba.addFramesLine(4, 3, 0);
-	
-	pruebix:(&prueba, AnimatedSprite::Playing, sf::seconds(0.1));
-	*/
+	animatedSprite:(sf::seconds(0.2), true, false);
+	animatedSprite.setPosition(sf::Vector2f(1280.0 / 2, 720.0 / 2));
 }
 
 void GameStatePlay::draw(const float dt)
@@ -55,16 +55,13 @@ void GameStatePlay::draw(const float dt)
 		game->window.draw(this->rangeCircle);
 	}
 
-	/* De momento lo dejo comentado y ya haremos pruebas
-	
-	pruebix.setAnimation(&prueba);
-	pruebix.play();
-	game->window.draw(pruebix);
-	*/
+	game->window.draw(animatedSprite);
 }
 
 void GameStatePlay::update(const float dt)
 {
+	sf::Time frameTime = frameClock.restart();
+	animatedSprite.update(frameTime);
 	gObjManager.onTick(dt);
 }
 
@@ -137,11 +134,15 @@ void GameStatePlay::handleInput()
 							placingObject = nullptr;
 							gObjManager.add(torre);
 							std::cout << "Action = Emplaza torre en " << torre->getSprite().getPosition().x << "/" << torre->getSprite().getPosition().y << std::endl;
+
+							std::cout << "Iniciando Animación de torreta" << std::endl;
+							animatedSprite.play(animacionTorreta);
+							animatedSprite.setLooped(false);
 						}
 						else
 						{
 							if (objMouseOver)
-								std::cout << "Click en torre con UID 0x" << objMouseOver->getUID().toInt();
+								std::cout << "Click en torre con UID 0x" << objMouseOver->getUID().toInt() << std::endl;
 						}
 						break;
 				}

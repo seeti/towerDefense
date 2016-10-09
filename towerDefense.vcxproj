@@ -171,6 +171,7 @@
     <ClCompile Include="GameObjects\StaticObject.cpp" />
     <ClCompile Include="GameObjects\Torre.cpp" />
     <ClCompile Include="GameObjects\UID.cpp" />
+    <ClCompile Include="GameStates\GameStateIntros.cpp" />
     <ClCompile Include="GameStates\GameState.cpp" />
     <ClCompile Include="GameStates\GameStateMainMenu.cpp" />
     <ClCompile Include="GameStates\GameStatePlay.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="GameObjects\StaticObject.h" />
     <ClInclude Include="GameObjects\Torre.h" />
     <ClInclude Include="GameObjects\UID.h" />
+    <ClInclude Include="GameStates\GameStateIntros.h" />
     <ClInclude Include="GameStates\GameState.h" />
     <ClInclude Include="GameStates\GameStateMainMenu.h" />
     <ClInclude Include="GameStates\GameStatePlay.h" />

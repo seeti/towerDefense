@@ -60,6 +60,7 @@
     <ClCompile Include="GameObjects\StaticObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="GameStates\GameStateIntros.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameStates\GameState.h">
@@ -109,5 +110,6 @@
     <ClInclude Include="GameObjects\StaticObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="GameStates\GameStateIntros.h" />
   </ItemGroup>
 </Project>

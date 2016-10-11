@@ -14,17 +14,27 @@ enum logoSplash {
 };
 
 const char* urlSplash[logoSplash_QTY] = {
-	"logoSplash_1.png",
-	"logoSplash_2.png"
+	"splashLogo_1.png",
+	"splashLogo_2.png"
 };
 
 private:
 	void enterMainMenu();
 	SettingsManager settingsManager;
-	const char* logoSplashFolder = "../media/logos/";
+	const char* logoSplashFolder = "media/logos/";
 
 	void loadSplashFiles();
-	std::vector<sf::Sprite> splashImages;
+
+	// NOTA: Aquí antes utilizaba un std::vector, pero he tenido que cambiarlo a std::pair
+	// porque destruia la textura antes de utilizarla. Recuerdame que te explique esto.
+	// http://www.sfml-dev.org/tutorials/2.4/graphics-sprite.php#the-white-square-problem
+	std::vector<std::pair<sf::Texture, sf::Sprite>> splashImages;
+	std::pair<sf::Texture, sf::Sprite> splashImage;
+
+	int splashDrawingNow;
+	sf::Clock splashScreenShowTimeClock;
+	sf::Time splashScreenShowTime;
+	int alpha;
 
 public:
 	virtual void draw(const float dt);

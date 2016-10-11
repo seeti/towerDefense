@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
-#include "../SettingsManager.h"
 
 class GameStateIntros : public GameState
 {
@@ -20,16 +19,14 @@ const char* urlSplash[logoSplash_QTY] = {
 
 private:
 	void enterMainMenu();
-	SettingsManager settingsManager;
 	const char* logoSplashFolder = "media/logos/";
 
 	void loadSplashFiles();
+	void skipSplash();
 
-	// NOTA: Aquí antes utilizaba un std::vector, pero he tenido que cambiarlo a std::pair
-	// porque destruia la textura antes de utilizarla. Recuerdame que te explique esto.
-	// http://www.sfml-dev.org/tutorials/2.4/graphics-sprite.php#the-white-square-problem
-	std::vector<std::pair<sf::Texture, sf::Sprite>> splashImages;
-	std::pair<sf::Texture, sf::Sprite> splashImage;
+	/* Al utilizar el textureManager de la clase Game, ya no necesitamos el std::pair para hacer
+	parejas de textura-sprite. Con un vector nos vale. */
+	std::vector<sf::Sprite> splashImages;
 
 	int splashDrawingNow;
 	sf::Clock splashScreenShowTimeClock;

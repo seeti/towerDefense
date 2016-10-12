@@ -1,10 +1,13 @@
 #pragma once
 
+#include <functional>
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
 
 class GameStateIntros : public GameState
 {
+
+enum Dir { Out, In, None };
 
 enum logoSplash {
 	logoSplash_1,
@@ -29,8 +32,9 @@ private:
 	std::vector<sf::Sprite> splashImages;
 
 	int splashDrawingNow;
-	sf::Clock splashScreenShowTimeClock;
-	sf::Time splashScreenShowTime;
+	sf::Clock splashScreenShowTimeClock, splashScreenShowTimeIteration;
+	sf::Time splashScreenShowTime, splashScreenTimeStep;
+	Dir direction;
 	int alpha;
 
 public:

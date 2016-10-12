@@ -10,10 +10,12 @@ GameStateIntros::GameStateIntros(Game* game)
 	if (this->game->settingsManager.getIntValueOfKey("debugMode", 0) == 1)
 		this->enterMainMenu();
 
-	this->loadSplashFiles();						// Función para rellenar el vector con los logos.
-	this->splashDrawingNow = 0;						// Variable para controlar que logo se tiene que dibujar.
-	this->splashScreenShowTime = sf::seconds(2);	// Tiempo que queremos que se muestre el logo.
-	this->alpha = 0;								// Inicializamos el alpha a 0 (totalmente transparente).
+	this->loadSplashFiles();								// Función para rellenar el vector con los logos.
+	this->splashDrawingNow = 0;								// Variable para controlar que logo se tiene que dibujar.
+	this->splashScreenShowTime = sf::seconds(2);			// Tiempo que queremos que se muestre el logo.
+	this->splashScreenTimeStep = sf::seconds(1.0f / 60.0f);	// Step por defecto de cada iteracion
+	this->alpha = 0;										// Inicializamos el alpha a 0 (totalmente transparente).
+	this->direction = Out;									// Direccion por defecto (de oscuro a claro)
 }
 
 void GameStateIntros::loadSplashFiles()
@@ -52,25 +54,40 @@ void GameStateIntros::update(const float dt)
 	
 	if (this->splashScreenShowTimeClock.getElapsedTime() < this->splashScreenShowTime)
 	{
-		if (this->alpha < 255) this->splashImages[this->splashDrawingNow].setColor(sf::Color(255, 255, 255, this->alpha += 5));
-		std::cout << "tiempo: " << this->splashScreenShowTimeClock.getElapsedTime().asSeconds() << std::endl;
+		if (this->splashScreenShowTimeIteration.getElapsedTime() >= this->splashScreenTimeStep)
+		{
+			const float complete = this->splashScreenShowTimeClock.getElapsedTime().asSeconds() / this->splashScreenShowTime.asSeconds();
+			this->alpha = (this->direction == Out) ? (complete * 255.0f) : ((1.0f - complete) * 255.0f);
+			if (this->direction == None) this->alpha = 255;
+			this->splashImages[this->splashDrawingNow].setColor(sf::Color(255, 255, 255, this->alpha));
+			this->splashScreenShowTimeIteration.restart();
+		}
+
 	}
-	
-	// ToDo: Cuando el alpha llegue a 255, que espere otro par de segundos y pase al siguiente logo.
+	else {
+
+		// Si ha pasado el tiempo y esta apareciendo, que pase a "esperar". Si ya esta en esperar, que pase a desaparecer.
+		this->direction = (this->direction == Out) ? None : In;
+		if ((this->direction == In) && this->alpha <= 5) this->skipSplash();
+		this->splashScreenShowTimeClock.restart();
+	}
 
 	return;
 }
 
+// Este método pasa al siguiente logo. Si es el ultimo logo, nos lleva al menú principal.
 void GameStateIntros::skipSplash()
 {
 	if (!this->splashDrawingNow++ < (logoSplash_QTY - 1))
 	{
 		this->enterMainMenu();
 	}
+	this->direction = Out;
 	this->alpha = 0;
 	this->splashScreenShowTimeClock.restart();
 }
 
+// Control de eventos que provengan del usuario.
 void GameStateIntros::handleInput()
 {
 	sf::Event event;
@@ -86,7 +103,7 @@ void GameStateIntros::handleInput()
 				break;
 			}
 
-			case sf::Event::KeyPressed:
+			case sf::Event::KeyReleased:
 			{
 				switch (event.key.code)
 				{
@@ -106,6 +123,7 @@ void GameStateIntros::handleInput()
 						break;
 				}
 			}
+
 			case sf::Event::MouseButtonPressed:
 				this->skipSplash();
 				break;
@@ -114,6 +132,7 @@ void GameStateIntros::handleInput()
 
 	return;
 }
+
 
 void GameStateIntros::enterMainMenu()
 {

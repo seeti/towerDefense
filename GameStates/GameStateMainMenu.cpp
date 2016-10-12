@@ -64,6 +64,7 @@ void GameStateMainMenu::createMenu()
 
 		this->textoOpcionMenu[i].setFont(fuenteMenu);
 		this->textoOpcionMenu[i].setString(StringsMenu[i]);
+		this->textoOpcionMenu[i].setCharacterSize((unsigned int)(this->game->settingsManager.getIntValueOfKey("ScreenHeight", 720) * 0.05f));
 		this->textoOpcionMenu[i].setPosition((float)screenWidth * 0.1f, (((float)screenHeight * 0.8f) + (float)i * (float)screenHeight * 0.05f));
 	}
 }

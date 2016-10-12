@@ -101,7 +101,7 @@ void GameStateMainMenu::handleInput()
 
 			case sf::Event::MouseButtonPressed:
 			{
-				if (event.mouseButton.button == sf::Mouse::Left || this->botonHover == OpcionesMenu::Menu_QTY)	// No nos importan los clicks con el botón derecho.
+				if (event.mouseButton.button != sf::Mouse::Left || this->botonHover == OpcionesMenu::Menu_QTY)	// No nos importan los clicks con el botón derecho.
 					break;
 				switch (this->botonHover)
 				{
@@ -136,7 +136,7 @@ void GameStateMainMenu::handleInput()
 						}
 
 						this->botonHover = i;
-						break;	// Encontrado botón, no necesitamos recorrer más código.
+						return;	// Encontrado botón, no necesitamos recorrer más código.
 
 					}
 				}

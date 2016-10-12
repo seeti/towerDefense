@@ -7,6 +7,8 @@ GameStateIntros::GameStateIntros(Game* game)
 	this->game = game;
 
 	// Si en el config.cfg aparece la variable debugMode = 1, se salta las intros.
+	// POR ALGUNA RAZÓN ESTO NO FUNCIONA, AUNQUE SI ESTA LLAMANDO A enterMainMenu() WTF
+	std::cout << this->game->settingsManager.getIntValueOfKey("debugMode", 0) << std::endl;
 	if (this->game->settingsManager.getIntValueOfKey("debugMode", 0) == 1)
 		this->enterMainMenu();
 
@@ -25,19 +27,19 @@ void GameStateIntros::loadSplashFiles()
 		/* SOLUCIONADO EL TEMA DEL CUADRADO BLANCO, utilizando el textureManager que hay en la clase Game.
 		Por lo visto se destruia la textura antes de llegar a utilizarla */
 		this->game->texmgr.loadTexture("splash_" + i, this->logoSplashFolder + (std::string)urlSplash[i]);
-		
+
 		sf::Sprite sprite;
 
 		/* Aplicamos la textura al sprite, y centramos en el RenderWindow*/
 		sprite.setTexture(this->game->texmgr.getRef("splash_" + i));
 		sprite.setOrigin(sprite.getLocalBounds().width / 2, sprite.getLocalBounds().height / 2);
 		sprite.setPosition((float)this->game->window.getSize().x / 2, (float)this->game->window.getSize().y / 2);
-	
+
 		/* Lo añadimos a un contenedor que luego podremos recorrer independientemente de los
 		logos que hayamos añadido. */
 		this->splashImages.push_back(sprite);
 	}
-	
+
 	return;
 }
 
@@ -54,6 +56,7 @@ void GameStateIntros::update(const float dt)
 	
 	if (this->splashScreenShowTimeClock.getElapsedTime() < this->splashScreenShowTime)
 	{
+		// Este condicional hace que el fade sea linealmente proporcional a la duración que hayamos puesto.
 		if (this->splashScreenShowTimeIteration.getElapsedTime() >= this->splashScreenTimeStep)
 		{
 			const float complete = this->splashScreenShowTimeClock.getElapsedTime().asSeconds() / this->splashScreenShowTime.asSeconds();
@@ -62,7 +65,6 @@ void GameStateIntros::update(const float dt)
 			this->splashImages[this->splashDrawingNow].setColor(sf::Color(255, 255, 255, this->alpha));
 			this->splashScreenShowTimeIteration.restart();
 		}
-
 	}
 	else {
 
@@ -136,6 +138,7 @@ void GameStateIntros::handleInput()
 
 void GameStateIntros::enterMainMenu()
 {
+	std::cout << "Pasando al menu principal..." << std::endl;
 	this->game->pushState(new GameStateMainMenu(this->game));
 
 	return;

@@ -22,14 +22,19 @@ GameStatePlay::GameStatePlay(Game* game)
 	this->rangeCircle.setOutlineThickness(1);
 	//this->rangeCircle.setOrigin(this->rangeCircle.getGlobalBounds().height / 2, this->rangeCircle.getGlobalBounds().width / 2);
 
+	// Aqui cargamos en el textureManager el spriteSheet con todos los frames de la animacion
 	this->game->texmgr.loadTexture("prueba-anim", "media/prueba.png");
 
+	// Aqui asignamos el spriteSheet a la animación, para posteriormente indicarle cuales son los frames que vamos a utilizar
 	animacionTorreta.setSpriteSheet(this->game->texmgr.getRef("prueba-anim"));
 
-	for (int i = 0; i <= 5; i++) 
+	// Aqui vamos recorriendo el spriteSheet (en este caso son 5 frames) y vamos diciendole en rectangulos la posicion y tamaño de cada uno de los frames
+	for (int i = 0; i < 5; i++) 
 		animacionTorreta.addFrame(sf::IntRect(i * 69, 0, 69, 69));
 	
+	// Aqui indicamos el tiempo que tiene que durar la animacion, algo sobre el pause que no se muy bien que es, y si queremos que haga loop
 	animatedSprite = AnimatedSprite(sf::seconds(0.2f), true, false);
+	// En este momento creo que se trata como si se tratara de un sf::Sprite
 	animatedSprite.setPosition(sf::Vector2f(1280.0f / 2.0f, 720.0f / 2.0f));
 }
 
@@ -55,12 +60,14 @@ void GameStatePlay::draw(const float dt)
 		game->window.draw(this->rangeCircle);
 	}
 
+	// Aqui se dibuja como si fuera un sf::Sprite normal y corriente
 	game->window.draw(animatedSprite);
 }
 
 void GameStatePlay::update(const float dt)
 {
 	sf::Time frameTime = frameClock.restart();
+	// Esto creo que es para que se vaya cambiando el frame de la animacion
 	animatedSprite.update(frameTime);
 	gObjManager.onTick(dt);
 }
@@ -135,8 +142,10 @@ void GameStatePlay::handleInput()
 							gObjManager.add(torre);
 							std::cout << "Action = Emplaza torre en " << torre->getSprite().getPosition().x << "/" << torre->getSprite().getPosition().y << std::endl;
 
+							// Este método se llama en el momento que quieras que se inicie la animación
 							std::cout << "Iniciando Animación de torreta" << std::endl;
 							animatedSprite.play(animacionTorreta);
+							// Esta llamada a setLooped creo que es redundante, puesto que ya indicamos en su constructor: false
 							animatedSprite.setLooped(false);
 						}
 						else

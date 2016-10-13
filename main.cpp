@@ -12,8 +12,6 @@ int main()
 {
 	SettingsManager stMngr("config.cfg");
 
-	std::cout << stMngr.getIntValueOfKey("debugMode", 0) << std::endl;
-
 	if (stMngr.getIntValueOfKey("debugMode", 0) == 0)
 		gGame.pushState(new GameStateIntros(&gGame));
 	else

@@ -112,4 +112,7 @@
     </ClInclude>
     <ClInclude Include="GameStates\GameStateIntros.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="media\shaders\blur.frag" />
+  </ItemGroup>
 </Project>

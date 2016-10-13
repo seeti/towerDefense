@@ -2,6 +2,7 @@
 #include "GameStatePlay.h"
 #include <iostream>
 #include <array>
+#include <stdlib.h>
 
 GameStateMainMenu::GameStateMainMenu(Game* game)
 {
@@ -33,6 +34,7 @@ void GameStateMainMenu::draw(const float dt)
 
 void GameStateMainMenu::update(const float dt)
 {
+	
 }
 
 void GameStateMainMenu::cargaFondo()

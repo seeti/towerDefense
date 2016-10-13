@@ -6,12 +6,6 @@ GameStateIntros::GameStateIntros(Game* game)
 {
 	this->game = game;
 
-	// Si en el config.cfg aparece la variable debugMode = 1, se salta las intros.
-	// POR ALGUNA RAZÓN ESTO NO FUNCIONA, AUNQUE SI ESTA LLAMANDO A enterMainMenu() WTF
-	std::cout << this->game->settingsManager.getIntValueOfKey("debugMode", 0) << std::endl;
-	if (this->game->settingsManager.getIntValueOfKey("debugMode", 0) == 1)
-		this->enterMainMenu();
-
 	this->loadSplashFiles();								// Función para rellenar el vector con los logos.
 	this->splashDrawingNow = 0;								// Variable para controlar que logo se tiene que dibujar.
 	this->splashScreenShowTime = sf::seconds(2);			// Tiempo que queremos que se muestre el logo.
@@ -113,11 +107,7 @@ void GameStateIntros::handleInput()
 						this->game->window.close();
 						break;
 
-					case sf::Keyboard::Return:
-						this->skipSplash();
-						break;
-
-					case sf::Keyboard::Space:
+					case sf::Keyboard::Return || sf::Keyboard::Space:
 						this->skipSplash();
 						break;
 
@@ -135,7 +125,7 @@ void GameStateIntros::handleInput()
 	return;
 }
 
-
+// Función para cambiar el GameState al menú principal
 void GameStateIntros::enterMainMenu()
 {
 	std::cout << "Pasando al menu principal..." << std::endl;

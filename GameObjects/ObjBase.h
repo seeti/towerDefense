@@ -1,10 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <SFML/Graphics/Sprite.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include "Posicion.h"
 #include "UID.h"
+#include "../GameAnimations/AnimatedSprite.h"
 #include "../Game.h"
 
 /*
@@ -15,11 +15,12 @@ class ObjBase
 protected:
 	UID uid;
 	float fRange;
+
 public:
 	Posicion p;
 	ObjBase();
 	~ObjBase();
-	virtual sf::Sprite getSprite() = 0;
+	//virtual sf::Sprite getSprite() = 0;
 	virtual sf::FloatRect getLocalBounds() const = 0;
 	virtual sf::FloatRect getGlobalBounds() const = 0;
 	sf::Rect<float> getFixedBounds();

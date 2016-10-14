@@ -27,9 +27,8 @@ sf::Rect<float> ObjBase::getFixedBounds()
 
 sf::FloatRect ObjBase::getAbsoluteRect()
 {
-	sf::Sprite sprite = getSprite();
-	float fixedX = sprite.getGlobalBounds().width / 2;
-	float fixedY = sprite.getGlobalBounds().height / 2;
+	float fixedX = getGlobalBounds().width / 2;
+	float fixedY = getGlobalBounds().height / 2;
 	sf::FloatRect rect(
 		p.y - fixedY,
 		p.x - fixedX,

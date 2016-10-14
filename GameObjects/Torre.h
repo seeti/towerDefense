@@ -1,8 +1,8 @@
 #pragma once
-#include "StaticObject.h"
+#include "AnimatedObject.h"
 #include <Windows.h>
 
-class Torre : public StaticObject
+class Torre : public AnimatedObject
 {
 private:
 	sf::Texture sfTexture;

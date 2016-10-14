@@ -54,7 +54,7 @@ void GameStateIntros::update(const float dt)
 		if (this->splashScreenShowTimeIteration.getElapsedTime() >= this->splashScreenTimeStep)
 		{
 			const float complete = this->splashScreenShowTimeClock.getElapsedTime().asSeconds() / this->splashScreenShowTime.asSeconds();
-			this->alpha = (this->direction == Out) ? (complete * 255.0f) : ((1.0f - complete) * 255.0f);
+			this->alpha = (this->direction == Out) ? (int)(complete * 255.0f) : (int)((1.0f - complete) * 255.0f);
 			if (this->direction == None) this->alpha = 255;
 			this->splashImages[this->splashDrawingNow].setColor(sf::Color(255, 255, 255, this->alpha));
 			this->splashScreenShowTimeIteration.restart();

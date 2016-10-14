@@ -3,8 +3,7 @@
 
 class AnimatedObject : public ObjBase, public AnimatedSprite
 {
-private:
-	AnimatedSprite sfSprite;
+protected:
 public:
 	virtual sf::FloatRect getLocalBounds() const;
 	virtual sf::FloatRect getGlobalBounds() const;

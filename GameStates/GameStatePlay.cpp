@@ -49,7 +49,7 @@ void GameStatePlay::draw(const float dt)
 		sf::Texture texture;
 		if (!texture.loadFromFile(placingObject->getIconSrc()))
 			return;
-		game->window.draw(placingObject->getSprite());
+		placingObject->draw(game, dt);
 	}
 	else if (objMouseOver && objMouseOver->getRange() > 0.f)
 	{
@@ -61,7 +61,7 @@ void GameStatePlay::draw(const float dt)
 	}
 
 	// Aqui se dibuja como si fuera un sf::Sprite normal y corriente
-	game->window.draw(animatedSprite);
+	//game->window.draw(animatedSprite);
 }
 
 void GameStatePlay::update(const float dt)
@@ -137,10 +137,10 @@ void GameStatePlay::handleInput()
 							Torre* torre = (Torre*)placingObject;
 							this->actionState = ActionState::NONE;
 							torre->placeAt(sf::Mouse::getPosition(this->game->window).x, sf::Mouse::getPosition(this->game->window).y);
-							game->window.draw(torre->getSprite());
+							torre->draw(game ,0.0f);
 							placingObject = nullptr;
 							gObjManager.add(torre);
-							std::cout << "Action = Emplaza torre en " << torre->getSprite().getPosition().x << "/" << torre->getSprite().getPosition().y << std::endl;
+							std::cout << "Action = Emplaza torre en " << torre->getPosition().x << "/" << torre->getPosition().y << std::endl;
 
 							// Este método se llama en el momento que quieras que se inicie la animación
 							std::cout << "Iniciando Animación de torreta" << std::endl;

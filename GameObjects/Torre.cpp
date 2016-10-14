@@ -4,7 +4,7 @@
 #include "../Game.h"
 #include <iostream>
 
-Torre::Torre() : StaticObject()
+Torre::Torre() : AnimatedObject()
 {
 	onLoadTexture();
 	std::cout << "Creando torre con uid 0x" << getUID().toInt();
@@ -18,7 +18,7 @@ Torre::~Torre()
 
 char* Torre::getIconSrc()
 {
-	return "media/torreta2.png";
+	return "media/prueba.png";
 }
 
 bool Torre::placeAt(int x, int y, bool bIgnoreChecks)
@@ -26,20 +26,19 @@ bool Torre::placeAt(int x, int y, bool bIgnoreChecks)
 	if (p.moveTo(x, y))
 	{
 		ObjBase* obj = gObjManager.checkCollision(this);
-		sf::Sprite sprite = getSprite();
 		if (obj && !bIgnoreChecks)
 		{
 			//No debo moverme. TODO: poner el sprite de color rojo en vez de bloquear su avance?
-			sprite.setColor(sf::Color::Red);
+			setColor(sf::Color::Red);
 		}
 		else
 		{
 			p.x = x;
 			p.y = y;
-			sprite.setColor(sf::Color::White);
+			setColor(sf::Color::White);
 		}
-		sprite.setPosition((float)p.x, (float)p.y);
-		sprite.setOrigin(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2);
+		setPosition((float)p.x, (float)p.y);
+		setOrigin(getGlobalBounds().width / 2, getGlobalBounds().height / 2);
 		return true;
 	}
 	return false;
@@ -47,15 +46,16 @@ bool Torre::placeAt(int x, int y, bool bIgnoreChecks)
 
 const char* Torre::getObjectName()
 {
-	return "torreta";
+	return "prueba-anim";
 }
 
 void Torre::onLoadTexture()
 {
 	gGame.texmgr.loadTexture(getObjectName(), getIconSrc());
-	sfTexture = gGame.texmgr.getRef("torreta");
-	sf::Sprite sprite(sfTexture);
-	setSprite(sprite);
+	AnimatedObject::setSpriteSheet(gGame.texmgr.getRef("prueba-anim"));
+	animationSprite.addFrame(sf::IntRect(69, 0, 69, 69));
+
+	//animatedSprite:(sf::seconds(0.2), true, false);	 // ????
 }
 
 bool Torre::onTick(const float dt)

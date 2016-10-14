@@ -83,7 +83,7 @@ ObjBase * ObjectManager::checkCollision(ObjBase * objNuevo)
 			continue;
 		if (obj == objNuevo)
 			continue;
-		if (obj->getSprite().getGlobalBounds().intersects(objNuevo->getSprite().getGlobalBounds()))
+		if (obj->getGlobalBounds().intersects(objNuevo->getGlobalBounds()))
 			return obj;
 		//if (obj->getAbsoluteRect().contains(pos.x, pos.y))
 		//	return obj;

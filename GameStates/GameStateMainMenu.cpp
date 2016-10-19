@@ -1,8 +1,5 @@
 #include "GameStateMainMenu.h"
 #include "GameStatePlay.h"
-#include <iostream>
-#include <array>
-#include <stdlib.h>
 
 GameStateMainMenu::GameStateMainMenu(Game* game)
 {
@@ -22,7 +19,7 @@ void GameStateMainMenu::draw(const float dt)
 	this->game->window.setView(this->view);
 
 	this->game->window.clear(sf::Color::Black);
-	this->game->window.draw(this->game->background);
+	this->game->window.draw(this->game->background, &shader);
 
 	for (int i = 0; i < Menu_QTY; i++) {
 
@@ -40,6 +37,17 @@ void GameStateMainMenu::update(const float dt)
 void GameStateMainMenu::cargaFondo()
 {
 	this->game->background.setTexture(this->game->texmgr.getRef("background"));
+
+	if (sf::Shader::isAvailable())
+	{
+		if (!shader.loadFromFile("media/shaders/space.frag", sf::Shader::Fragment))
+		{
+			std::cerr << "ERROR CARGANDO EL SHADER DEL MENU" << std::endl;
+		}
+
+		// Cuando llamo a este método setUniform, el programa peta. No lo entiendo
+		//shader.setUniform("resolution", sf::Glsl::Vec2(1280.0, 720.0));
+	}
 }
 
 void GameStateMainMenu::createMenu()
@@ -97,6 +105,9 @@ void GameStateMainMenu::handleInput()
 					case sf::Keyboard::L:
 						this->enterBuildMode();
 						break;
+					case sf::Keyboard::T:
+						// Esta linea hace que pete el programa
+						//shader.setUniform("time", 1.f);
 					default:
 						break;
 				}

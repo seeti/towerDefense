@@ -3,6 +3,8 @@
 
 class AnimatedObject : public ObjBase, public AnimatedSprite
 {
+private:
+	sf::Sprite sfSprite;
 protected:
 public:
 	virtual sf::FloatRect getLocalBounds() const;

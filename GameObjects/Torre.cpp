@@ -52,8 +52,8 @@ const char* Torre::getObjectName()
 void Torre::onLoadTexture()
 {
 	gGame.texmgr.loadTexture(getObjectName(), getIconSrc());
-	AnimatedObject::setSpriteSheet(gGame.texmgr.getRef("prueba-anim"));
-	animationSprite.addFrame(sf::IntRect(69, 0, 69, 69));
+	//AnimatedObject::setSpriteSheet(gGame.texmgr.getRef("prueba-anim"));
+	//animationSprite.addFrame(sf::IntRect(69, 0, 69, 69));
 
 	//animatedSprite:(sf::seconds(0.2), true, false);	 // ????
 }

@@ -13,6 +13,8 @@ GameStatePlay::GameStatePlay(Game* game)
 
 	this->game->texmgr.loadTexture("background-building", "media/background_building.jpg");
 	this->game->backgroundBuilding.setTexture(this->game->texmgr.getRef("background-building"));
+	// Esta línea es para que la imágen ocupe toda la ventana
+	this->game->background.setTextureRect(sf::IntRect(0, 0, this->game->settingsManager.getIntValueOfKey("screenWidth", 1280), this->game->settingsManager.getIntValueOfKey("screenHeight", 720)));
 	objMouseOver = NULL;
 
 	// Inicialización del circulo que indica el rango de la torre

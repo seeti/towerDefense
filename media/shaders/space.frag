@@ -2,51 +2,91 @@
 precision mediump float;
 #endif
 
-uniform float time;
+uniform float time = 0.1;
 uniform vec2 mouse;
-uniform vec2 resolution;
 
-float snoise(vec3 uv, float res)
-{
-	const vec3 s = vec3(1e0, 1e2, 1e3);
-	
-	uv *= res;
-	
-	vec3 uv0 = floor(mod(uv, res))*s;
-	vec3 uv1 = floor(mod(uv+vec3(1.), res))*s;
-	
-	vec3 f = fract(uv); f = f*f*(3.0-2.0*f);
+uniform vec2 resolution = vec2(1280.0, 720.0);
 
-	vec4 v = vec4(uv0.x+uv0.y+uv0.z, uv1.x+uv0.y+uv0.z,
-		      	  uv0.x+uv1.y+uv0.z, uv1.x+uv1.y+uv0.z);
-
-	vec4 r = fract(sin(v*1e-1)*1e3);
-	float r0 = mix(mix(r.x, r.y, f.x), mix(r.z, r.w, f.x), f.y);
-	
-	r = fract(sin((v + uv1.z - uv0.z)*1e-1)*1e3);
-	float r1 = mix(mix(r.x, r.y, f.x), mix(r.z, r.w, f.x), f.y);
-	
-	return mix(r0, r1, f.z)*2.-1.;
+float field(in vec3 p,float s,  int idx) {
+   
+   float strength = 10. + .03 * log(1.e-6 + fract(sin(time) * 333.1));
+   float accum = s/4.;
+   float prev = 0.;
+   float tw = 0.;
+   for (int i = 0; i < 26; ++i) {
+      float mag = dot(p, p);
+      p = abs(p) / mag + vec3(-.5, -.4, -1.5);
+      float w = exp(-float(i) / 7.);
+      accum += w * exp(-strength * pow(abs(mag - prev), 2.2));
+      tw += w;
+      prev = mag;
+   }
+   return max(0., 5. * accum / tw - .7);
 }
 
 
-void main( void ) {	
-	vec2 p = gl_FragCoord.xy / resolution.xy;
-	p.x = p.x - mouse.x / resolution.x;
-	p.y = p.y + mouse.y / resolution.y;
-	p.y = p.y - 1.0;
-	
-	p.x*=resolution.x/resolution.y;			
-			  	
-	float color = 3.0 - (6.*length(p));		
-	
-	vec3 coord = vec3(atan(p.x,p.y)/6.2832, length(p)*0.4, .5);
-	
-	for(int i = 1; i <= 7; i++){
-		float power = pow(2.0, float(i));
-		color += (1.5 / power) * snoise(coord + vec3(0.,-time*.05, time*.01), power*16.);
-	}
-	
-	gl_FragColor = vec4( color, pow(max(color,0.),2.)*0.4, pow(max(color,0.),3.)*0.15 , 1.0);
-	
+vec3 nrand3( vec2 co )
+{
+   vec3 a = fract( cos( co.x*8.3e-3 + co.y )*vec3(1.3e5, 4.7e5, 2.9e5) );
+   vec3 b = fract( sin( co.x*0.3e-3 + co.y )*vec3(8.1e5, 1.0e5, 0.1e5) );
+   vec3 c = mix(a, b, 0.5);
+   return c;
+}
+
+
+void main() {
+   
+   vec2 uv = 2. * gl_FragCoord.xy / resolution.xy - 1.;
+   vec2 uvs = uv * resolution.xy / max(resolution.x, resolution.y);
+   vec3 p = vec3(uvs / 4., 0) + vec3(1., -1.3, 0.);
+
+   float aux;	
+   if(mouse.x<0.5)
+   {
+	aux = 1.0;
+   }
+   else
+   {
+	aux = -1.0;
+   }
+   
+   p += .2 * vec3(time*0.0 + sin(time*0.0 / 16.), time*0.0 + sin(time*0.0 / 12.),  sin(time / 12.));
+  
+   
+   float freqs[4];
+   freqs[0] = 0.05;
+   freqs[1] = 0.3; 
+   freqs[2] = 0.3;
+   freqs[3] = 0.7; 
+   
+   float t = 1.0*field(p,freqs[3], 26);
+   float v = (1. - exp((abs(uv.x) - 1.) * 6.)) * (1. - exp((abs(uv.y) - 1.) * 6.));
+   
+    //Second Layer
+   vec3 p2 = vec3(uvs / (4.+sin(time*0.011)*0.2+0.2+sin(time*0.015)*0.3+0.4), 1.5) + vec3(2., -1.3, -1.);
+   p2 += 0.25 * vec3(sin(time / 16.), sin(time / 12.),  sin(time / 128.));
+   float t2 = field(p2,freqs[3], 18);
+   vec4 c2 =  0.0*mix(.2, 0.2, v) * vec4(1.3 * t2 * t2 * t2 ,1.8  * t2 * t2 , t2* freqs[0], t2);
+   
+   
+   //Let's add some stars
+   //Thanks to http://glsl.heroku.com/e#6904.0
+   vec2 seed = p.xy * 2.0;   
+   seed = floor(seed * 1000.0);
+   vec3 rnd = nrand3( seed );
+   vec4 starcolor = vec4(pow(rnd.y,20.0));
+  
+   //Second Layer
+   vec2 seed2 = p2.xy * 3.0;
+   seed2 = floor(seed2 * resolution.x);
+   vec3 rnd2 = nrand3( seed2 );
+   starcolor += 0.0*vec4(pow(rnd2.y,40.0));
+
+   
+   gl_FragColor = mix(freqs[3]-.5, 1.,1.0) * vec4(1.5*freqs[2] * t * t* t , 1.2*freqs[1] * t * t, freqs[3]*t, 1.0) +c2+starcolor;
+   //gl_FragColor = mix(freqs[3]-.5, 1.,1.0) *vec4(1.5*freqs[2] * t * t* t , 1.2*freqs[1] * t * t, freqs[3]*t, 1.0);
+	//gl_FragColor = starcolor;
+	   
+	  
+	   
 }

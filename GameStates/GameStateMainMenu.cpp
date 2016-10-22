@@ -19,7 +19,7 @@ void GameStateMainMenu::draw(const float dt)
 	this->game->window.setView(this->view);
 
 	this->game->window.clear(sf::Color::Black);
-	this->game->window.draw(this->game->background, &shader);
+	this->game->window.draw(this->game->background, &shaderBackground);
 
 	for (int i = 0; i < Menu_QTY; i++) {
 
@@ -31,22 +31,21 @@ void GameStateMainMenu::draw(const float dt)
 
 void GameStateMainMenu::update(const float dt)
 {
-	
+	shaderBackground.setUniform("time", shaderBackgroundTime += 0.003);
 }
 
 void GameStateMainMenu::cargaFondo()
 {
 	this->game->background.setTexture(this->game->texmgr.getRef("background"));
 
+	// Comprobamos si la tarjeta grafica soporta shaders
 	if (sf::Shader::isAvailable())
 	{
-		if (!shader.loadFromFile("media/shaders/space.frag", sf::Shader::Fragment))
-		{
-			std::cerr << "ERROR CARGANDO EL SHADER DEL MENU" << std::endl;
-		}
+		/* SHADER FONDO DE PANTALLA */
+		if (!shaderBackground.loadFromFile("media/shaders/space.frag", sf::Shader::Fragment)) // Cargamos el shader desde fichero
+			std::cerr << "ERROR CARGANDO EL SHADER DEL FONDO DEL MENU" << std::endl;
 
-		// Cuando llamo a este método setUniform, el programa peta. No lo entiendo
-		//shader.setUniform("resolution", sf::Glsl::Vec2(1280.0, 720.0));
+		shaderBackground.setUniform("resolution", sf::Glsl::Vec2(this->game->screenWidth, this->game->screenHeight));	// Ajustamos el shader a la resolución de la ventana
 	}
 }
 
@@ -67,15 +66,13 @@ void GameStateMainMenu::createMenu()
 	this->sonidoMenu.setBuffer(this->bufferSonidoMenu);
 	this->sonidoMenu.setVolume(10);
 
-	int screenWidth = game->settingsManager.getIntValueOfKey("ScreenWidth", 1280);
-	int screenHeight = game->settingsManager.getIntValueOfKey("ScreenHeight", 720);
-
 	for (int i = 0; i < Menu_QTY; i++) {
 
 		this->textoOpcionMenu[i].setFont(fuenteMenu);
 		this->textoOpcionMenu[i].setString(StringsMenu[i]);
-		this->textoOpcionMenu[i].setCharacterSize((unsigned int)(this->game->settingsManager.getIntValueOfKey("ScreenHeight", 720) * 0.05f));
-		this->textoOpcionMenu[i].setPosition((float)screenWidth * 0.1f, (((float)screenHeight * 0.8f) + (float)i * (float)screenHeight * 0.05f));
+		this->textoOpcionMenu[i].setCharacterSize((unsigned int)(this->game->screenHeight * 0.05f));
+		this->textoOpcionMenu[i].setOutlineThickness(4.f);
+		this->textoOpcionMenu[i].setPosition((float)this->game->screenWidth * 0.1f, (((float)this->game->screenHeight * 0.8f) + (float)i * (float)this->game->screenHeight * 0.05f));
 	}
 }
 
@@ -105,9 +102,7 @@ void GameStateMainMenu::handleInput()
 					case sf::Keyboard::L:
 						this->enterBuildMode();
 						break;
-					case sf::Keyboard::T:
-						// Esta linea hace que pete el programa
-						//shader.setUniform("time", 1.f);
+
 					default:
 						break;
 				}
@@ -138,12 +133,12 @@ void GameStateMainMenu::handleInput()
 				for (int i = 0; i < Menu_QTY; i++) {
 
 					sf::FloatRect textRect = textoOpcionMenu[i].getGlobalBounds();
-					textoOpcionMenu[i].setCharacterSize( (unsigned int)(this->game->settingsManager.getIntValueOfKey("ScreenHeight", 720) * 0.05f) );
+					textoOpcionMenu[i].setFillColor(sf::Color::White);
 
 					if (textRect.contains(mousePos))
 					{
-						textoOpcionMenu[i].setCharacterSize( (unsigned int)(this->game->settingsManager.getIntValueOfKey("ScreenHeight", 720) * 0.06f) );
-						
+						textoOpcionMenu[i].setFillColor(sf::Color::Yellow);
+
 						if (this->reproducirSonido && this->botonHover != i)
 						{
 							this->sonidoMenu.play();
@@ -151,7 +146,6 @@ void GameStateMainMenu::handleInput()
 
 						this->botonHover = i;
 						return;	// Encontrado botón, no necesitamos recorrer más código.
-
 					}
 				}
 				this->botonHover = Menu_QTY;	// No hemos encontrado botón, reseteamos el atributo en caso de que haya tenido algún otro valor anteriormente.

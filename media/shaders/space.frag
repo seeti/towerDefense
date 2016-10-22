@@ -5,7 +5,7 @@ precision mediump float;
 uniform float time = 0.1;
 uniform vec2 mouse;
 
-uniform vec2 resolution = vec2(1280.0, 720.0);
+uniform vec2 resolution;
 
 float field(in vec3 p,float s,  int idx) {
    

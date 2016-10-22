@@ -58,10 +58,10 @@ void Game::gameLoop()
 Game::Game()
 {
 	this->settingsManager.open("config.cfg");
-	int screenWidth = settingsManager.getIntValueOfKey("ScreenWidth", 1280);
-	int screenHeight = settingsManager.getIntValueOfKey("ScreenHeight", 720);
+	this->screenWidth = settingsManager.getIntValueOfKey("ScreenWidth", 1280);
+	this->screenHeight = settingsManager.getIntValueOfKey("ScreenHeight", 720);
 
-	this->window.create(sf::VideoMode(screenWidth, screenHeight), "Tower Defense");
+	this->window.create(sf::VideoMode(this->screenWidth, this->screenHeight), "Tower Defense");
 	
 	int frameRateLimit = settingsManager.getIntValueOfKey("ScreenFrameRateLimit", 60);
 	this->window.setFramerateLimit(60);

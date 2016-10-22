@@ -35,7 +35,8 @@ private:
 	sf::Text textoOpcionMenu[3];
 	bool reproducirSonido = true;
 
-	sf::Shader shader;
+	sf::Shader shaderBackground;
+	float shaderBackgroundTime = 0;
 
 	int botonHover;
 

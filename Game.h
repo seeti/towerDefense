@@ -27,6 +27,8 @@ public:
 	GameState* peekState();
 
 	SettingsManager settingsManager;
+	int screenWidth;
+	int screenHeight;
 
 	void gameLoop();
 

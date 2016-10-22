@@ -7,6 +7,14 @@
 ObjBase::ObjBase()
 {
 	uid = gObjManager.generateUID();
+
+	// Inicialización del circulo que indica el rango de la torre
+	//this->rangeCircle.setRadius(100.f);
+	rangeCircle.setFillColor(sf::Color(200, 0, 0, 50));
+	rangeCircle.setOutlineColor(sf::Color(200, 0, 0));
+	rangeCircle.setOutlineThickness(1);
+	//this->rangeCircle.setOrigin(this->rangeCircle.getGlobalBounds().height / 2, this->rangeCircle.getGlobalBounds().width / 2);
+
 }
 
 

@@ -6,6 +6,7 @@ class Torre : public AnimatedObject
 {
 private:
 	sf::Texture sfTexture;
+	//Crear atributo que enlaza al archivo y clase de animaciones y asignarle valor desde el constructor de Torre.
 	const float primaryAttack = 1.250;
 	float elapsedPrimaryAttack = 0;
 public:

@@ -14,9 +14,15 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::add(ObjBase* obj)
 {
-	if (!obj)
-		return;
-	mList.insert(mList.end(), obj);
+	try {
+		if (!obj)
+			return;
+		mList.insert(mList.end(), obj);
+	}
+	catch (...)
+	{
+		std::cout << "ObjectManager::add() error";
+	}
 }
 
 void ObjectManager::remove(ObjBase* obj)

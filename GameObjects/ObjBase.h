@@ -16,7 +16,9 @@ protected:
 	UID uid;
 	float fRange;
 
+
 public:
+	sf::CircleShape rangeCircle;
 	Posicion p;
 	ObjBase();
 	~ObjBase();

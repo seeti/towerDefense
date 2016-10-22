@@ -16,15 +16,9 @@ private:
 
 	void leaveBuildMode();
 	ObjBase* objMouseOver;	// El puntero del ratón se encuentra encima de este objeto dinámico.
-	sf::CircleShape rangeCircle;
-	
-	Animation animacionTorreta;
-
-	AnimatedSprite animatedSprite;
 
 	float speed = 80.f;
 	bool noKeyWasPressed = true;
-	sf::Clock frameClock;
 
 public:
 

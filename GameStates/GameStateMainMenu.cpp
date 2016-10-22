@@ -31,7 +31,7 @@ void GameStateMainMenu::draw(const float dt)
 
 void GameStateMainMenu::update(const float dt)
 {
-	shaderBackground.setUniform("time", shaderBackgroundTime += 0.003);
+	shaderBackground.setUniform("time", shaderBackgroundTime += 0.003f);
 }
 
 void GameStateMainMenu::cargaFondo()
@@ -45,7 +45,7 @@ void GameStateMainMenu::cargaFondo()
 		if (!shaderBackground.loadFromFile("media/shaders/space.frag", sf::Shader::Fragment)) // Cargamos el shader desde fichero
 			std::cerr << "ERROR CARGANDO EL SHADER DEL FONDO DEL MENU" << std::endl;
 
-		shaderBackground.setUniform("resolution", sf::Glsl::Vec2(this->game->screenWidth, this->game->screenHeight));	// Ajustamos el shader a la resolución de la ventana
+		shaderBackground.setUniform("resolution", sf::Glsl::Vec2((float)this->game->screenWidth, (float)this->game->screenHeight));	// Ajustamos el shader a la resolución de la ventana
 	}
 }
 

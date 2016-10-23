@@ -122,9 +122,7 @@ void GameStatePlay::handleInput()
 
 							// Este método se llama en el momento que quieras que se inicie la animación
 							std::cout << "Iniciando Animación de torreta" << std::endl;
-							torre->play(torre->getAnimation());
-							// Esta llamada a setLooped creo que es redundante, puesto que ya indicamos en su constructor: false
-							torre->setLooped(true);
+							torre->play();
 						}
 						else
 						{

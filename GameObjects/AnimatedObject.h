@@ -15,4 +15,5 @@ public:
 	virtual void draw(Game* game, const float dt = 0.0f);
 	virtual bool onTick(const float dt);
 	Animation getAnimation();
+	virtual void setPosition(float x, float y);
 };

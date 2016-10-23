@@ -13,4 +13,5 @@ public:
 	virtual sf::Sprite getSprite();
 	virtual sf::FloatRect getLocalBounds() const;
 	virtual sf::FloatRect getGlobalBounds() const;
+	virtual void setPosition(float x, float y);
 };

@@ -27,3 +27,8 @@ Animation AnimatedObject::getAnimation()
 {
 	return animacionObjeto;
 }
+
+void AnimatedObject::setPosition(float x, float y)
+{
+	animatedSprite.setPosition(x, y);
+}

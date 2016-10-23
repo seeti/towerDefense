@@ -70,7 +70,8 @@ void Torre::onLoadTexture()
 
 bool Torre::onTick(const float dt)
 {
-	play();
+	animatedSprite = AnimatedSprite(sf::seconds(0.4f), true, true);
+	animatedSprite.setAnimation(animacionObjeto);	// Asignamos al animatedSprite el conjunto de animaciones que ha de usar.
 	elapsedPrimaryAttack += dt;
 	if (elapsedPrimaryAttack > primaryAttack)
 	{

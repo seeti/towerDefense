@@ -16,11 +16,9 @@ Torre::Torre() : AnimatedObject()
 	for (int i = 0; i < 5; i++)
 		animacionObjeto.addFrame(sf::IntRect(i * 69, 0, 69, 69));
 
-	// Aqui indicamos el tiempo que tiene que durar la animacion, algo sobre el pause que no se muy bien que es, y si queremos que haga loop
-	animatedSprite = AnimatedSprite(sf::seconds(0.2f), true, false);
-	// En este momento creo que se trata como si se tratara de un sf::Sprite
-	animatedSprite.setPosition(sf::Vector2f(1280.0f / 2.0f, 720.0f / 2.0f));
-	animatedSprite.pause();
+	// Aqui indicamos el tiempo que tiene que durar la animacion, si queremos que la animacion esté pausada (quieta) y si queremos que haga loop constanemente (Cuando acabe, que se inicie de nuevo).
+	animatedSprite = AnimatedSprite(sf::seconds(0.4f), true, true);
+	animatedSprite.setAnimation(animacionObjeto);	// Asignamos al animatedSprite el conjunto de animaciones que ha de usar.
 }
 
 
@@ -72,6 +70,7 @@ void Torre::onLoadTexture()
 
 bool Torre::onTick(const float dt)
 {
+	play();
 	elapsedPrimaryAttack += dt;
 	if (elapsedPrimaryAttack > primaryAttack)
 	{

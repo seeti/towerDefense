@@ -16,7 +16,6 @@ protected:
 	UID uid;
 	float fRange;
 
-
 public:
 	sf::CircleShape rangeCircle;
 	Posicion p;
@@ -31,6 +30,7 @@ public:
 	virtual bool onTick(const float dt);
 	virtual void draw(Game* game, const float dt = 0.0f ) = 0;
 	virtual bool placeAt(int x, int y, bool bIgnoreChecks = false) = 0;
+	virtual void setPosition(float x, float y) = 0;
 
 	virtual const char* getObjectName() = 0;
 	virtual char* getIconSrc() = 0;

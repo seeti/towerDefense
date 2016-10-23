@@ -31,3 +31,8 @@ sf::FloatRect StaticObject::getGlobalBounds() const
 {
 	return sfSprite.getGlobalBounds();
 }
+
+void StaticObject::setPosition(float x, float y)
+{
+	sfSprite.setPosition(x, y);
+}

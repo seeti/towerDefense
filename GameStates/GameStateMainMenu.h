@@ -40,12 +40,15 @@ private:
 
 	int botonHover;
 
+	bool paused;
+	sf::Text pausedText;
+
 public:
 	virtual void draw(const float dt);
 	virtual void update(const float dt);
 	virtual void handleInput();
 	
-	GameStateMainMenu(Game* game);
+	GameStateMainMenu(Game* game, bool paused = false);
 
 	//GameStateMainMenu();
 	~GameStateMainMenu();

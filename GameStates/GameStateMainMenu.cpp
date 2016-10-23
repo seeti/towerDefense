@@ -1,9 +1,11 @@
 #include "GameStateMainMenu.h"
 #include "GameStatePlay.h"
 
-GameStateMainMenu::GameStateMainMenu(Game* game)
+GameStateMainMenu::GameStateMainMenu(Game* game, bool paused)
 {
 	this->game = game;
+	this->paused = paused;
+
 	sf::Vector2f pos = sf::Vector2f(this->game->window.getSize());
 	this->view.setSize(pos);
 	pos *= 0.5f;
@@ -25,6 +27,9 @@ void GameStateMainMenu::draw(const float dt)
 
 		this->game->window.draw(textoOpcionMenu[i]);
 	}
+
+	if (this->paused)
+		this->game->window.draw(this->pausedText);
 
 	return;
 }
@@ -70,10 +75,21 @@ void GameStateMainMenu::createMenu()
 
 		this->textoOpcionMenu[i].setFont(fuenteMenu);
 		this->textoOpcionMenu[i].setString(StringsMenu[i]);
+		if (i == 0 && this->paused)
+			this->textoOpcionMenu[i].setString("Reanudar");
 		this->textoOpcionMenu[i].setCharacterSize((unsigned int)(this->game->screenHeight * 0.05f));
 		this->textoOpcionMenu[i].setOutlineThickness(4.f);
 		this->textoOpcionMenu[i].setPosition((float)this->game->screenWidth * 0.1f, (((float)this->game->screenHeight * 0.8f) + (float)i * (float)this->game->screenHeight * 0.05f));
 	}
+
+	// Muestra el texto de pausa en el menú principal.
+	if (this->paused)
+	{
+		pausedText = sf::Text("- PAUSA -", this->fuenteMenu, 120);
+		pausedText.setOutlineThickness(5.f);
+		pausedText.setOrigin(this->pausedText.getLocalBounds().width / 2, this->pausedText.getLocalBounds().height / 2);
+		pausedText.setPosition(this->game->screenWidth * 0.5f, this->game->screenHeight * 0.2f);
+	}	
 }
 
 void GameStateMainMenu::handleInput()

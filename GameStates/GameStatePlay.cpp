@@ -115,7 +115,7 @@ void GameStatePlay::handleInput()
 							Torre* torre = (Torre*)placingObject;
 							this->actionState = ActionState::NONE;
 							torre->placeAt(sf::Mouse::getPosition(this->game->window).x, sf::Mouse::getPosition(this->game->window).y);
-							torre->draw(game ,0.0f);
+							torre->draw(game, 0.0f);
 							placingObject = nullptr;
 							gObjManager.add(torre);
 							std::cout << "Action = Emplaza torre en " << torre->getPosition().x << "/" << torre->getPosition().y << std::endl;
@@ -158,7 +158,7 @@ void GameStatePlay::handleInput()
 
 void GameStatePlay::leaveBuildMode()
 {
-	this->game->pushState(new GameStateMainMenu(this->game));
+	this->game->pushState(new GameStateMainMenu(this->game, true));
 
 	return;
 }

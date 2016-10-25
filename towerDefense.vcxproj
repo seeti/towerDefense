@@ -71,12 +71,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -157,44 +161,6 @@
       <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="GameAnimations\AnimatedSprite.cpp" />
-    <ClCompile Include="GameAnimations\Animation.cpp" />
-    <ClCompile Include="GameAnimations\MouseCursor.cpp" />
-    <ClCompile Include="GameAnimations\TextureManager.cpp" />
-    <ClCompile Include="GameObjects\AnimatedObject.cpp" />
-    <ClCompile Include="GameObjects\AnimatedObjects\Enemigo.cpp" />
-    <ClCompile Include="GameObjects\ObjBase.cpp" />
-    <ClCompile Include="GameObjects\ObjectManager.cpp" />
-    <ClCompile Include="GameObjects\StaticObject.cpp" />
-    <ClCompile Include="GameObjects\AnimatedObjects\Torre.cpp" />
-    <ClCompile Include="GameObjects\UID.cpp" />
-    <ClCompile Include="GameStates\GameStateIntros.cpp" />
-    <ClCompile Include="GameStates\GameState.cpp" />
-    <ClCompile Include="GameStates\GameStateMainMenu.cpp" />
-    <ClCompile Include="GameStates\GameStatePlay.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GameAnimations\AnimatedSprite.h" />
-    <ClInclude Include="GameAnimations\Animation.h" />
-    <ClInclude Include="GameAnimations\MouseCursor.h" />
-    <ClInclude Include="GameAnimations\TextureManager.h" />
-    <ClInclude Include="GameObjects\AnimatedObject.h" />
-    <ClInclude Include="GameObjects\AnimatedObjects\Enemigo.h" />
-    <ClInclude Include="GameObjects\ObjBase.h" />
-    <ClInclude Include="GameObjects\ObjectManager.h" />
-    <ClInclude Include="GameObjects\StaticObject.h" />
-    <ClInclude Include="GameObjects\AnimatedObjects\Torre.h" />
-    <ClInclude Include="GameObjects\UID.h" />
-    <ClInclude Include="GameStates\GameStateIntros.h" />
-    <ClInclude Include="GameStates\GameState.h" />
-    <ClInclude Include="GameStates\GameStateMainMenu.h" />
-    <ClInclude Include="GameStates\GameStatePlay.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="media\shaders\blur.frag" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,9 +1,21 @@
 #include "Game.h"
 
 
-Game game; //Creamos una referencia a la clase estática Game.
+Game gGame; //Creamos una instancia de la clase Game
 
-int main()
+void main()
 {
-	return 0;
+	sf::Event event;
+	Game();
+	while (gGame.window.isOpen())
+	{
+		while (gGame.window.pollEvent(event)) {
+			if (event.type == sf::Event::EventType::Closed)
+				gGame.window.close();
+		}
+		gGame.window.clear();
+		gGame.onTick();
+		gGame.window.display();
+	}
+	return;
 }

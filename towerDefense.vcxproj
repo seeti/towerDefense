@@ -158,45 +158,39 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameAnimations\AnimatedSprite.cpp" />
     <ClCompile Include="GameAnimations\Animation.cpp" />
     <ClCompile Include="GameAnimations\MouseCursor.cpp" />
     <ClCompile Include="GameAnimations\TextureManager.cpp" />
     <ClCompile Include="GameObjects\AnimatedObject.cpp" />
-    <ClCompile Include="GameObjects\Enemigo.cpp" />
+    <ClCompile Include="GameObjects\AnimatedObjects\Enemigo.cpp" />
     <ClCompile Include="GameObjects\ObjBase.cpp" />
     <ClCompile Include="GameObjects\ObjectManager.cpp" />
-    <ClCompile Include="GameObjects\Posicion.cpp" />
     <ClCompile Include="GameObjects\StaticObject.cpp" />
-    <ClCompile Include="GameObjects\Torre.cpp" />
+    <ClCompile Include="GameObjects\AnimatedObjects\Torre.cpp" />
     <ClCompile Include="GameObjects\UID.cpp" />
     <ClCompile Include="GameStates\GameStateIntros.cpp" />
     <ClCompile Include="GameStates\GameState.cpp" />
     <ClCompile Include="GameStates\GameStateMainMenu.cpp" />
     <ClCompile Include="GameStates\GameStatePlay.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SettingsManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h" />
     <ClInclude Include="GameAnimations\AnimatedSprite.h" />
     <ClInclude Include="GameAnimations\Animation.h" />
     <ClInclude Include="GameAnimations\MouseCursor.h" />
     <ClInclude Include="GameAnimations\TextureManager.h" />
     <ClInclude Include="GameObjects\AnimatedObject.h" />
-    <ClInclude Include="GameObjects\Enemigo.h" />
+    <ClInclude Include="GameObjects\AnimatedObjects\Enemigo.h" />
     <ClInclude Include="GameObjects\ObjBase.h" />
     <ClInclude Include="GameObjects\ObjectManager.h" />
-    <ClInclude Include="GameObjects\Posicion.h" />
     <ClInclude Include="GameObjects\StaticObject.h" />
-    <ClInclude Include="GameObjects\Torre.h" />
+    <ClInclude Include="GameObjects\AnimatedObjects\Torre.h" />
     <ClInclude Include="GameObjects\UID.h" />
     <ClInclude Include="GameStates\GameStateIntros.h" />
     <ClInclude Include="GameStates\GameState.h" />
     <ClInclude Include="GameStates\GameStateMainMenu.h" />
     <ClInclude Include="GameStates\GameStatePlay.h" />
-    <ClInclude Include="SettingsManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="media\shaders\blur.frag" />

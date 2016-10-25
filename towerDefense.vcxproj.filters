@@ -33,12 +33,6 @@
     <ClCompile Include="GameObjects\ObjectManager.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\Posicion.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\Torre.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjects\UID.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
@@ -48,19 +42,20 @@
     <ClCompile Include="GameAnimations\MouseCursor.cpp">
       <Filter>GameAnimations</Filter>
     </ClCompile>
-    <ClCompile Include="SettingsManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjects\AnimatedObject.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\Enemigo.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects\StaticObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="GameStates\GameStateIntros.cpp" />
+    <ClCompile Include="GameObjects\AnimatedObjects\Torre.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\AnimatedObjects\Enemigo.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameStates\GameState.h">
@@ -81,12 +76,6 @@
     <ClInclude Include="GameObjects\ObjectManager.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\Posicion.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects\Torre.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjects\UID.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
@@ -96,21 +85,22 @@
     <ClInclude Include="GameAnimations\MouseCursor.h">
       <Filter>GameAnimations</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="SettingsManager.h" />
     <ClInclude Include="GameObjects\AnimatedObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="GameAnimations\Animation.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\Enemigo.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjects\StaticObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="GameStates\GameStateIntros.h" />
+    <ClInclude Include="GameObjects\AnimatedObjects\Torre.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\AnimatedObjects\Enemigo.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="media\shaders\blur.frag" />

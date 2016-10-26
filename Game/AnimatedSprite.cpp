@@ -5,7 +5,7 @@
 
 AnimatedSprite::AnimatedSprite(const char * rutaImagen)
 {
-	if (!sfTexture.loadFromFile("media/unit_dragon.png")) {	// Si hay cualquier error con la animación, se borra la Unit y se bloquea todo el código.
+	if (!sfTexture.loadFromFile(rutaImagen)) {	// Si hay cualquier error con la animación, se borra la Unit y se bloquea todo el código.
 		std::cout << "Error cargando fichero '" << rutaImagen << "'" << std::endl;
 		delete this;
 		return;

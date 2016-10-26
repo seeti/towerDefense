@@ -1,11 +1,13 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Game\Unit.h"
+#include "Game\UnitManager.h"
+#include "Game\Units\Enemigos\Dragon.h"
 
 extern class Game
 {
 private:
-	Unit* unidad;
+	Dragon * unidad;
 public:
 	int screenWidth;
 	int screenHeight;

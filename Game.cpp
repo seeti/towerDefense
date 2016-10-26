@@ -16,7 +16,7 @@ Game::Game()
 	window.create(sf::VideoMode(this->screenWidth, this->screenHeight), "Tower Defense");
 	window.setFramerateLimit(60);
 	window.clear();
-	unidad = new Unit();
+	unidad = new Dragon();
 }
 
 

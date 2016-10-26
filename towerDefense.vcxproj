@@ -19,15 +19,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Units\Enemigo.h" />
+    <ClInclude Include="Game\Units\Enemigos\Dragon.h" />
     <ClInclude Include="Game\AnimatedSprite.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game\Unit.h" />
+    <ClInclude Include="Game\UnitManager.h" />
+    <ClInclude Include="Game\Units\Torre.h" />
+    <ClInclude Include="Game\Units\Torres\Torre1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Units\Enemigo.cpp" />
+    <ClCompile Include="Game\Units\Enemigos\Dragon.cpp" />
     <ClCompile Include="Game\AnimatedSprite.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game\Unit.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Game\UnitManager.cpp" />
+    <ClCompile Include="Game\Units\Torre.cpp" />
+    <ClCompile Include="Game\Units\Torres\Torre1.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5E1DA751-D877-4DF3-A85E-29BBC4894EFB}</ProjectGuid>

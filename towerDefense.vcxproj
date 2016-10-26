@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\ColectorBasura.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="Game\Units\Enemigo.h" />
     <ClInclude Include="Game\Units\Enemigos\Dragon.h" />
     <ClInclude Include="Game\AnimatedSprite.h" />
@@ -29,6 +31,8 @@
     <ClInclude Include="Game\Units\Torres\Torre1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game\ColectorBasura.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Game\Units\Enemigo.cpp" />
     <ClCompile Include="Game\Units\Enemigos\Dragon.cpp" />
     <ClCompile Include="Game\AnimatedSprite.cpp" />

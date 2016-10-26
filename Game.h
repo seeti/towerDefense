@@ -1,13 +1,12 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "GameManager.h"
 #include "Game\Unit.h"
-#include "Game\UnitManager.h"
-#include "Game\Units\Enemigos\Dragon.h"
 
 extern class Game
 {
 private:
-	Dragon * unidad;
+	GameManager* gameManager;
 public:
 	int screenWidth;	///< Tamaño en pixeles del ancho de la pantalla.
 	int screenHeight;	///< Tamaño en pixeles del alto de la pantalla.

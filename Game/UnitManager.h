@@ -1,22 +1,19 @@
 #pragma once
-#include "Units/Enemigo.h"
-#include "Units/Torre.h"
+#include "Unit.h"
 
+class ColectorBasura;
 /*
-	Clase que guarda un listado para cada enemigo y para cada torreta existentes.
+	Clase que guarda un listado de Unit*.
 */
-class UnitManager
+class UnitManager : public std::vector<Unit*>
 {
 private:
-	std::vector<Torre*> listadoTorres;		///< Listado de Torres.
-	std::vector<Enemigo*> listadoEnemigos;	///< Listado de Enemigos.
 
 public:
 	UnitManager();
 	~UnitManager();
-	void addTorre(Torre* torre);			///< Añade un objeto Torre* a la lista.
-	void addEnemigo(Enemigo* enemigo);		///< Añade un objeto Enemigo* a la lista.
-	void borraTorre(Torre* torre);			///< Borra el objeto Torre* de la lista.
-	void borraEnemigo(Enemigo* enemigo);	///< Borra el objeto Enemigo* de la lista.
+	void onTick(ColectorBasura* gbc);		///< Control del tiempo.
+	void addUnit(Unit* unit);				///< Añade una Unit* a la lista.
+	void borraUnit(Unit* unit);				///< Borra la Unit* de la lista.
 };
 

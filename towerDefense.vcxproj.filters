@@ -9,6 +9,8 @@
     <ClInclude Include="Game\Units\Enemigos\Dragon.h" />
     <ClInclude Include="Game\Units\Torre.h" />
     <ClInclude Include="Game\Units\Torres\Torre1.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Game\ColectorBasura.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
@@ -20,5 +22,7 @@
     <ClCompile Include="Game\Units\Enemigos\Dragon.cpp" />
     <ClCompile Include="Game\Units\Torre.cpp" />
     <ClCompile Include="Game\Units\Torres\Torre1.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Game\ColectorBasura.cpp" />
   </ItemGroup>
 </Project>

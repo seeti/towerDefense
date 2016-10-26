@@ -7,7 +7,7 @@
 
 void Game::onTick()
 {
-	unidad->draw();
+	gameManager->onTick();
 }
 
 Game::Game()
@@ -18,7 +18,7 @@ Game::Game()
 	window.create(sf::VideoMode(this->screenWidth, this->screenHeight), "Tower Defense");
 	window.setFramerateLimit(60);
 	window.clear();
-	unidad = new Dragon();
+	gameManager = new GameManager();
 }
 
 

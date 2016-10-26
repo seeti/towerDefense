@@ -1,58 +1,62 @@
 #include "UnitManager.h"
+#include "ColectorBasura.h"
+#include <iostream>
 
 
 
 UnitManager::UnitManager()
 {
-	listadoEnemigos.clear();
-	listadoTorres.clear();
+	clear();
 }
 
 
 UnitManager::~UnitManager()
 {
-	while (listadoEnemigos.size() > 0)
+	// Borrado de todos los objetos existentes y vaciado de sus contenedores.
+	while (size())
 	{
-		delete listadoEnemigos.at(0);
+		Unit* pUnit = back();
+		delete pUnit;
+		pop_back();
 	}
-	while (listadoTorres.size() > 0)
+}
+
+void UnitManager::onTick(ColectorBasura* gbc)
+{
+	// Tick en los Enemigos.
+	if (size())
 	{
-		delete listadoTorres.at(0);
-	}
-}
-
-void UnitManager::addTorre(Torre * torre)
-{
-	listadoTorres.insert(listadoTorres.end(), torre);
-}
-
-void UnitManager::addEnemigo(Enemigo * enemigo)
-{
-	listadoEnemigos.insert(listadoEnemigos.end(), enemigo);
-}
-
-void UnitManager::borraTorre(Torre * torre)
-{
-	for (int i = 0; i < listadoTorres.size(); i++)
-	{
-		if (listadoTorres.at(i) == torre)
+		for (unsigned int i = 0; i < size(); i++)
 		{
-			listadoTorres.erase(listadoTorres.begin() + i);
-			return;
+			Unit* pUnit = at(i);
+			if (pUnit)
+			{
+				if (!pUnit->onTick())				// Si el tick no es true, ese objeto se destruye.
+				{
+					gbc->push_back(pUnit);	// Se añade al colector de basura para borrarlo posteriormente.
+					continue;
+				}
+			}
 		}
 	}
 }
 
-void UnitManager::borraEnemigo(Enemigo * enemigo)
+void UnitManager::addUnit(Unit * unit)
 {
-	for (int i = 0; i < listadoEnemigos.size(); i++)
+	push_back(unit);			// Añade la Unit al final del vector.
+}
+
+void UnitManager::borraUnit(Unit * unit)
+{
+	for (unsigned int i = 0; i < size(); i++)			// Recorre todas las torres.
 	{
-		if (listadoEnemigos.at(i) == enemigo)
+		if (at(i) == unit)						// Compara las torres una a una, buscando la que se pide.
 		{
-			listadoEnemigos.erase(listadoEnemigos.begin() + i);
-			return;
+			erase(begin() + i);	// Borra la entrada correspondiente en el listado una vez la encuentra.
+			break;
 		}
 	}
+	delete unit;	// Borra la torre definitivamente de la memoria.
 }
 
 

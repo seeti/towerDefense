@@ -37,3 +37,18 @@ void Unit::setRutaImagen(const char * ruta)
 	}
 	animatedSprite = AnimatedSprite(rutaImagen);
 }
+
+void Unit::setPosition(float x, float y)
+{
+	animatedSprite.setPosition((float)x, (float)y);
+}
+
+void Unit::setOrigin(bool centered)
+{
+	animatedSprite.setOrigin((bool)centered);
+}
+
+void Unit::setOrigin(float x, float y)
+{
+	animatedSprite.setOrigin((float)x, (float)y);
+}

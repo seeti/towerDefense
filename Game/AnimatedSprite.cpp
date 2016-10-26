@@ -22,6 +22,24 @@ AnimatedSprite::~AnimatedSprite()
 {
 }
 
+void AnimatedSprite::setPosition(float x, float y)
+{
+	sfSprite.setPosition(x, y);
+}
+
+void AnimatedSprite::setOrigin(bool centered)			// TODO: Este método no me centra bien el sprite, los dos cout devuelven 0. ** PENDIENTE DE REVISAR **
+{
+	if (centered) sfSprite.setOrigin(sfSprite.getTextureRect().width / 2, sfSprite.getTextureRect().height / 2);
+	
+	std::cout << sfSprite.getTextureRect().width / 2 << std::endl;
+	std::cout << sfSprite.getTextureRect().height / 2 << std::endl;
+}
+
+void AnimatedSprite::setOrigin(float x, float y)		// Este método (con el dragón) pasando x=100, y=100 lo centra correctamente.
+{
+	sfSprite.setOrigin(sf::Vector2f(x, y));
+}
+
 void AnimatedSprite::draw() {
 
 	int frame = frameList[frameActual];
@@ -29,9 +47,10 @@ void AnimatedSprite::draw() {
 		direccion * sizeY,	// Multiplicando la dirección (que también representa cada fila de frames) actual por el tamaño de cada frame tenemos la posicion del primer pixel del frame a mostrar.
 		sizeX,	// tamaño maximo del frame.
 		sizeY);
-	sf::Sprite sprite(sfTexture, rectSourceSprite);
-	sprite.setTextureRect(rectSourceSprite);
-	gGame.window.draw(sprite);
+	//sf::Sprite sprite(sfTexture, rectSourceSprite);		// He comentado esta línea para utilizar sfSprite, y poder acceder a él desde el resto de la clase
+	sfSprite.setTexture(sfTexture);
+	sfSprite.setTextureRect(rectSourceSprite);
+	gGame.window.draw(sfSprite);
 
 	if (clock.getElapsedTime().asSeconds() < 0.2f)
 		return;

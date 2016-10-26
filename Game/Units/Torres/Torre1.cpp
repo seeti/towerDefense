@@ -12,13 +12,3 @@ Torre1::Torre1()
 Torre1::~Torre1()
 {
 }
-
-void Torre1::setNombre(const char * nombreNuevo)
-{
-	nombre = nombreNuevo;
-}
-
-void Torre1::setRutaImagen(const char * ruta)
-{
-	rutaImagen = ruta;
-}

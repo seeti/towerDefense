@@ -2,6 +2,7 @@
 #include <SFML/System.hpp>
 
 #include "Game.h"
+#include <iostream>
 
 
 void Game::onTick()
@@ -11,6 +12,7 @@ void Game::onTick()
 
 Game::Game()
 {
+	std::cout << "Inicializando Game" << std::endl;
 	screenWidth = 1280;
 	screenHeight = 720;
 	window.create(sf::VideoMode(this->screenWidth, this->screenHeight), "Tower Defense");

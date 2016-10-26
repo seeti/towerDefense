@@ -6,7 +6,6 @@ Game gGame; //Creamos una instancia de la clase Game
 void main()
 {
 	sf::Event event;
-	Game();
 	while (gGame.window.isOpen())
 	{
 		while (gGame.window.pollEvent(event)) {

@@ -19,9 +19,11 @@ private:
 					averageFPS;	///< Frames ejecutados en el último segundo. //TODO: ahora mismo muestra los frames del último segundo pero no una media (average) de los últimos segundos.
 	float timeCount;			///< Contador de ticks, ya que el reloj se resetea en cada onTick se lleva aquí la cuenta de ticks para saber cuando ha pasado un segundo.
 	sf::Clock clock;			///< Reloj del programa.
+
 public:
 	GameManager();
 	~GameManager();
 	void onTick();
+	void handleInput();
 };
 

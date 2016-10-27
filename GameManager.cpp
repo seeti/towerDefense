@@ -1,9 +1,44 @@
 #include "GameManager.h"
 #include "Game\Units\Enemigos\Dragon.h"
 #include "Game.h"
+#include <SFML/Window/Event.hpp>
 #include <iostream>
-#include <iosfwd>
 
+
+void GameManager::handleInput()
+{
+	sf::Event event;
+	while (gGame.window.pollEvent(event))
+	{
+		switch (event.type)
+		{
+		case sf::Event::KeyPressed:
+			switch (event.key.code)
+			{
+				case sf::Keyboard::D:		// left key is pressed: move our character
+					Dragon* dragon = new Dragon();
+					dragon->setPosition(sf::Mouse::getPosition(gGame.window).x, sf::Mouse::getPosition(gGame.window).y);
+					listadoEnemigos->push_back(dragon);
+					break;
+				}
+				break;
+			case sf::Event::MouseButtonPressed:
+			{
+				switch (event.mouseButton.button)
+				{
+					case sf::Mouse::Left:
+						break;
+				}
+				break;
+			}
+			case sf::Event::MouseMoved:
+			{
+
+			}
+			break;
+		}
+	}
+}
 
 GameManager::GameManager()
 {
@@ -14,7 +49,7 @@ GameManager::GameManager()
 	gbcEnemigos = new ColectorBasura();
 	gbcTorres = new ColectorBasura();
 	
-	listadoEnemigos->push_back(new Dragon());
+	//listadoEnemigos->push_back(new Dragon());
 }
 
 

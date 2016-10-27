@@ -8,6 +8,7 @@
 
 void Game::onTick()
 {
+	gameManager->handleInput();
 	gameManager->onTick();
 }
 

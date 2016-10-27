@@ -10,9 +10,9 @@ Unit::~Unit()
 {
 }
 
-void Unit::draw()
+void Unit::draw(const float elapsed)
 {
-	animatedSprite.draw();
+	animatedSprite.draw(elapsed);
 }
 
 const char * Unit::getNombre()

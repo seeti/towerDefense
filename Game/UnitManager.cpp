@@ -21,7 +21,7 @@ UnitManager::~UnitManager()
 	}
 }
 
-void UnitManager::onTick(ColectorBasura* gbc)
+void UnitManager::onTick(ColectorBasura* gbc, const float elapsed)
 {
 	// Tick en los Enemigos.
 	if (size())
@@ -31,7 +31,7 @@ void UnitManager::onTick(ColectorBasura* gbc)
 			Unit* pUnit = at(i);
 			if (pUnit)
 			{
-				if (!pUnit->onTick())				// Si el tick no es true, ese objeto se destruye.
+				if (!pUnit->onTick(elapsed))				// Si el tick no es true, ese objeto se destruye.
 				{
 					gbc->push_back(pUnit);	// Se añade al colector de basura para borrarlo posteriormente.
 					continue;

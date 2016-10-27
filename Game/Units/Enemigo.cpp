@@ -10,8 +10,8 @@ Enemigo::~Enemigo()
 {
 }
 
-bool Enemigo::onTick()
+bool Enemigo::onTick(const float elapsed)
 {
-	draw();
+	draw(elapsed);
 	return true;
 }

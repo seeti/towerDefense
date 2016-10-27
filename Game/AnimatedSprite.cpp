@@ -40,7 +40,7 @@ void AnimatedSprite::setOrigin(float x, float y)		// Este método (con el dragón)
 	sfSprite.setOrigin(sf::Vector2f(x, y));
 }
 
-void AnimatedSprite::draw() {
+void AnimatedSprite::draw(const float elapsed) {
 
 	int frame = frameList[frameActual];
 	sf::IntRect rectSourceSprite(frame * sizeX,	// Multiplicando el frame actual por el tamaño de cada frame tenemos la posicion del primer pixel del frame a mostrar.
@@ -52,11 +52,12 @@ void AnimatedSprite::draw() {
 	sfSprite.setTextureRect(rectSourceSprite);
 	gGame.window.draw(sfSprite);
 
-	if (clock.getElapsedTime().asSeconds() < 0.2f)
+	lastTick += elapsed;	// Actualización del contador de tick.
+	if (lastTick < 0.2f)	// Si la animación lleva menos de 0.2 ticks (segundos) sin actualizarse se detiene el código.
 		return;
 	std::cout << "Animando " << frameActual << "("<< frameList[frameActual] <<")"<< std::endl;
 	frameActual++;
 	if (frameActual >= 4)	// Cada ciclo de animación tiene 4 frames (del 0 al 3), cuando se pasa del cuarto se resetea.
 		frameActual = 0;
-	clock.restart();
+	lastTick = 0.0f;
 }

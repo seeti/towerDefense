@@ -9,6 +9,6 @@ class Enemigo : public Unit
 public:
 	Enemigo();
 	~Enemigo();
-	bool onTick();
+	bool onTick(const float elapsed);
 };
 

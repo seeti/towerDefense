@@ -10,6 +10,6 @@ public:
 	Torre();
 	~Torre();
 
-	bool onTick();
+	bool onTick(const float elapsed);
 };
 

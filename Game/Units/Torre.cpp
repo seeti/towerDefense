@@ -10,7 +10,7 @@ Torre::~Torre()
 {
 }
 
-bool Torre::onTick()
+bool Torre::onTick(const float elapsed)
 {
 	std::cout << "Torre::onTick" << std::endl;
 	return true;

@@ -20,6 +20,8 @@ Game::Game()
 	window.create(sf::VideoMode(this->screenWidth, this->screenHeight), "Tower Defense");
 	window.setFramerateLimit(60);
 	window.clear();
+
+	textureManager = new TextureManager();
 	gameManager = new GameManager();
 }
 

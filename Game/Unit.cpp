@@ -12,7 +12,8 @@ Unit::~Unit()
 
 void Unit::draw(const float elapsed)
 {
-	animatedSprite.draw(elapsed);
+	animatedSprite.draw();
+	animatedSprite.update(elapsed);
 }
 
 const char * Unit::getNombre()
@@ -26,16 +27,15 @@ void Unit::setNombre(const char * nombreNuevo)
 	nombre = nombreNuevo;
 }
 
-void Unit::setRutaImagen(const char * ruta)
+void Unit::setRutaImagen(std::string nombre, const char * ruta)
 {
-	std::cout << "("<< getNombre()<<") setRutaImagen(" << ruta << ")" << std::endl;
 	rutaImagen = ruta;
 	if ((rutaImagen == NULL))
 	{
 		std::cout << "Ruta de imagen inexistente para " << getNombre() << "." << std::endl;
 		return;
 	}
-	animatedSprite = AnimatedSprite(rutaImagen);
+	animatedSprite = AnimatedSprite(nombre, rutaImagen);
 }
 
 void Unit::setPosition(float x, float y)

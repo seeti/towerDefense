@@ -29,6 +29,7 @@
     <ClInclude Include="Game\UnitManager.h" />
     <ClInclude Include="Game\Units\Torre.h" />
     <ClInclude Include="Game\Units\Torres\Torre1.h" />
+    <ClInclude Include="Game\TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\ColectorBasura.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="Game\UnitManager.cpp" />
     <ClCompile Include="Game\Units\Torre.cpp" />
     <ClCompile Include="Game\Units\Torres\Torre1.cpp" />
+    <ClCompile Include="Game\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

@@ -12,30 +12,35 @@ void GameManager::handleInput()
 	{
 		switch (event.type)
 		{
-		case sf::Event::KeyPressed:
-			switch (event.key.code)
-			{
-				case sf::Keyboard::D:		// left key is pressed: move our character
-					Dragon* dragon = new Dragon();
-					dragon->setPosition(sf::Mouse::getPosition(gGame.window).x, sf::Mouse::getPosition(gGame.window).y);
-					listadoEnemigos->push_back(dragon);
-					break;
-				}
+			case sf::Event::Closed:
+				gGame.window.close();
 				break;
-			case sf::Event::MouseButtonPressed:
+			case sf::Event::KeyPressed:
 			{
-				switch (event.mouseButton.button)
+				switch (event.key.code)
 				{
-					case sf::Mouse::Left:
+					case sf::Keyboard::D:		// left key is pressed: move our character
+						Dragon* dragon = new Dragon();
+						dragon->setPosition((float)sf::Mouse::getPosition(gGame.window).x, (float)sf::Mouse::getPosition(gGame.window).y);
+						dragon->draw(0.0f);
+						dragon->setOrigin(true);
+						listadoEnemigos->push_back(dragon);
 						break;
 				}
-				break;
+				case sf::Event::MouseButtonPressed:
+				{
+					switch (event.mouseButton.button)
+					{
+					case sf::Mouse::Left:
+						break;
+					}
+					break;
+				}
+				case sf::Event::MouseMoved:
+				{
+					break;
+				}
 			}
-			case sf::Event::MouseMoved:
-			{
-
-			}
-			break;
 		}
 	}
 }
@@ -61,8 +66,7 @@ GameManager::~GameManager()
 	delete gbcTorres;
 }
 
-void GameManager::onTick()
-{
+void GameManager::onTick() {
 	float tick = clock.getElapsedTime().asSeconds();
 	clock.restart();
 	frameCount++;

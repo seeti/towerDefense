@@ -4,8 +4,7 @@
 Dragon::Dragon()
 {
 	setNombre("Dragon prueba");
-	setRutaImagen("media/unit_dragon.png");
-	//setPosition(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+	setRutaImagen(getNombre(), "media/unit_dragon.png");
 }
 
 

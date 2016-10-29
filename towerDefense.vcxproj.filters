@@ -27,7 +27,4 @@
     <ClCompile Include="Game\ColectorBasura.cpp" />
     <ClCompile Include="Game\TextureManager.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-  </ItemGroup>
 </Project>

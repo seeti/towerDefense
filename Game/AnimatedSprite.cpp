@@ -15,7 +15,7 @@ AnimatedSprite::AnimatedSprite(std::string nombre, const char * rutaImagen)
 		return;
 	}
 
-	sizeX		= sfTexture.getSize().x / 3;
+	sizeX = sfTexture.getSize().x / 3;
 	sizeY = sfTexture.getSize().y / 4;
 }
 

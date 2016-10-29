@@ -45,9 +45,6 @@
     <ClCompile Include="Game\Units\Torres\Torre1.cpp" />
     <ClCompile Include="Game\TextureManager.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5E1DA751-D877-4DF3-A85E-29BBC4894EFB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

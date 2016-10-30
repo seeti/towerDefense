@@ -1,12 +1,15 @@
 #include "Game.h"
-#include "GameStateStart.h"
 
-int main()
+
+Game gGame; //Creamos una instancia de la clase Game
+
+void main()
 {
-	Game game;
-
-	game.pushState(new GameStateStart(&game));
-	game.gameLoop();
-
-	return 0;
+	while (gGame.pGameWindow.isOpen())
+	{
+		gGame.pGameWindow.clear();
+		gGame.onTick();
+		gGame.pGameWindow.display();
+	}
+	return;
 }

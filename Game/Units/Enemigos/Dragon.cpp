@@ -4,7 +4,7 @@
 Dragon::Dragon()
 {
 	setNombre("Dragon prueba");
-	setRutaImagen(getNombre(), "media/unit_dragon.png");
+	setRutaImagen("media/unit_dragon.png");
 }
 
 

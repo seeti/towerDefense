@@ -8,21 +8,21 @@
 
 void Game::onTick()
 {
-	gameManager->handleInput();
-	gameManager->onTick();
+	pGameManager->handleInput();
+    pGameManager->onTick();
 }
 
 Game::Game()
 {
 	std::cout << "Inicializando Game" << std::endl;
-	screenWidth = 1280;
-	screenHeight = 720;
-	window.create(sf::VideoMode(this->screenWidth, this->screenHeight), "Tower Defense");
-	window.setFramerateLimit(60);
-	window.clear();
+	iScreenWidth = 1280;
+	iScreenHeight = 720;
+    pGameWindow.create(sf::VideoMode(this->iScreenWidth, this->iScreenHeight), "Tower Defense");
+    pGameWindow.setFramerateLimit(60);
+    pGameWindow.clear();
 
-	textureManager = new TextureManager();
-	gameManager = new GameManager();
+	pTextureManager = new TextureManager();
+    pGameManager = new GameManager();
 }
 
 

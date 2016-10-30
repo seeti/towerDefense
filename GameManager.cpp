@@ -8,12 +8,12 @@
 void GameManager::handleInput()
 {
 	sf::Event event;
-	while (gGame.window.pollEvent(event))
+	while (gGame.pGameWindow.pollEvent(event))
 	{
 		switch (event.type)
 		{
 			case sf::Event::Closed:
-				gGame.window.close();
+				gGame.pGameWindow.close();
 				break;
 			case sf::Event::KeyPressed:
 			{
@@ -21,7 +21,7 @@ void GameManager::handleInput()
 				{
 					case sf::Keyboard::D:		// left key is pressed: move our character
 						Dragon* dragon = new Dragon();
-						dragon->setPosition((float)sf::Mouse::getPosition(gGame.window).x, (float)sf::Mouse::getPosition(gGame.window).y);
+						dragon->setPosition((float)sf::Mouse::getPosition(gGame.pGameWindow).x, (float)sf::Mouse::getPosition(gGame.pGameWindow).y);
 						dragon->draw(0.0f);
 						dragon->setOrigin(true);
 						listadoEnemigos->push_back(dragon);
@@ -106,9 +106,9 @@ void GameManager::addTextoFPS()
 	textFPS.setStyle(sf::Text::Bold);
 	textFPS.setFillColor(sf::Color::White);
 	textFPS.setString(str); //ss.str() converts the string buffer into a regular string
-	textFPS.setPosition((float)gGame.screenWidth - 150.0f, 15.0f);
+	textFPS.setPosition((float)gGame.iScreenWidth - 150.0f, 15.0f);
 	
-	gGame.window.draw(textFPS);
+	gGame.pGameWindow.draw(textFPS);
 }
 
 void GameManager::addTextoMousePos()
@@ -122,12 +122,12 @@ void GameManager::addTextoMousePos()
 	}
 
 	// Guarda en variables la posición actual del ratón relativa a la ventana del juego.
-	int fixedX = sf::Mouse::getPosition(gGame.window).x, 
-		fixedY = sf::Mouse::getPosition(gGame.window).y;
+	int fixedX = sf::Mouse::getPosition(gGame.pGameWindow).x,
+		fixedY = sf::Mouse::getPosition(gGame.pGameWindow).y;
 
 	// Guarda en variables el tamaño máximo de la ventana del juego.
-	int maxSizeX = (int)gGame.window.getSize().x,
-		maxSizeY = (int)gGame.window.getSize().y;
+	int maxSizeX = (int)gGame.pGameWindow.getSize().x,
+		maxSizeY = (int)gGame.pGameWindow.getSize().y;
 	
 	// Comprobación para que, aunque el ratón esté fuera de la pantalla, el juego no use coordenadas que no están dentro suya.
 	if (fixedX > maxSizeX) {
@@ -156,7 +156,7 @@ void GameManager::addTextoMousePos()
 	textCoordsRaton.setStyle(sf::Text::Bold);
 	textCoordsRaton.setFillColor(sf::Color::White);
 	textCoordsRaton.setString(str);
-	textCoordsRaton.setPosition((float)gGame.screenWidth - 150.0f, 35.0f);
+	textCoordsRaton.setPosition((float)gGame.iScreenWidth - 150.0f, 35.0f);
 
-	gGame.window.draw(textCoordsRaton);
+	gGame.pGameWindow.draw(textCoordsRaton);
 }

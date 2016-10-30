@@ -5,11 +5,11 @@ Game gGame; //Creamos una instancia de la clase Game
 
 void main()
 {
-	while (gGame.window.isOpen())
+	while (gGame.pGameWindow.isOpen())
 	{
-		gGame.window.clear();
+		gGame.pGameWindow.clear();
 		gGame.onTick();
-		gGame.window.display();
+		gGame.pGameWindow.display();
 	}
 	return;
 }

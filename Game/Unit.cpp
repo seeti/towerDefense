@@ -27,7 +27,7 @@ void Unit::setNombre(const char * nombreNuevo)
 	nombre = nombreNuevo;
 }
 
-void Unit::setRutaImagen(std::string nombre, const char * ruta)
+void Unit::setRutaImagen(const char * ruta)
 {
 	rutaImagen = ruta;
 	if ((rutaImagen == NULL))
@@ -35,7 +35,7 @@ void Unit::setRutaImagen(std::string nombre, const char * ruta)
 		std::cout << "Ruta de imagen inexistente para " << getNombre() << "." << std::endl;
 		return;
 	}
-	animatedSprite = AnimatedSprite(nombre, rutaImagen);
+	animatedSprite = AnimatedSprite(getNombre(), rutaImagen);
 }
 
 void Unit::setPosition(float x, float y)

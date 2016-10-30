@@ -5,7 +5,7 @@
 Torre1::Torre1()
 {
 	setNombre("Torre prueba");
-	setRutaImagen(getNombre(), "media/unit_dragon.png");
+	setRutaImagen("media/unit_dragon.png");
 }
 
 

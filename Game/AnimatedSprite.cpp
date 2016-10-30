@@ -6,7 +6,7 @@
 AnimatedSprite::AnimatedSprite(std::string nombre, const char * rutaImagen)
 {
 	try {
-		gGame.textureManager->loadFromFile(nombre, rutaImagen);	// Si hay cualquier error con la animación, se borra la Unit y se bloquea todo el código.
+		sfTexture = gGame.pTextureManager->loadFromFile(nombre, rutaImagen);	// Si hay cualquier error con la animación, se borra la Unit y se bloquea todo el código.
 	}
 	catch (...)
 	{
@@ -68,5 +68,5 @@ void AnimatedSprite::draw() {
 	//sf::Sprite sprite(sfTexture, rectSourceSprite);		// He comentado esta línea para utilizar sfSprite, y poder acceder a él desde el resto de la clase
 	sfSprite.setTexture(sfTexture);
 	sfSprite.setTextureRect(rectSourceSprite);
-	gGame.window.draw(sfSprite);
+	gGame.pGameWindow.draw(sfSprite);
 }

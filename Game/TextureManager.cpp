@@ -1,14 +1,11 @@
 #include "TextureManager.h"
-#include <exception>
-#include <stdexcept>
+#include <iostream>
 
 
 
-sf::Texture TextureManager::loadFromFile(std::string nombre, const char * file)
-{
+sf::Texture TextureManager::loadFromFile(std::string nombre, const char * file) {
 	if (exists(nombre))	// Si ya está cargada, se detiene el código.
 		return getRef(nombre);
-
 	sf::Texture textura;
 	textura.loadFromFile(file);	// Si no puede cargarla, return false.
 
@@ -16,17 +13,17 @@ sf::Texture TextureManager::loadFromFile(std::string nombre, const char * file)
 	return getRef(nombre);
 }
 
-TextureManager::TextureManager()
-{
+TextureManager::TextureManager() {
+
 }
 
 
-TextureManager::~TextureManager()
-{
+TextureManager::~TextureManager() {
+
 }
 
 void TextureManager::add(std::string nombre, sf::Texture textura) {
-	add(nombre, textura);
+	(*this)[nombre] = textura;
 }
 
 sf::Texture TextureManager::getRef(std::string textura) {

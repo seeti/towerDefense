@@ -1,4 +1,5 @@
 #pragma once
+#include "GameState.h"
 #include "Game\UnitManager.h"
 #include "Game\ColectorBasura.h"
 
@@ -6,7 +7,7 @@
 	Clase que se encarga de manejar el tiempo de juego, el flujo de objetos, su interacción...
 	TODO: Meter aquí un controlador de teclas, etc
 */
-class GameManager
+class GameManager : public GameState
 {
 private:
 	UnitManager* listadoEnemigos;///< Lista (std::vector) de los enemigos.

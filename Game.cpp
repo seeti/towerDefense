@@ -3,6 +3,7 @@
 
 #include "Game.h"
 #include "GameManager.h"
+#include "GameStatesManager.h"
 #include <iostream>
 
 
@@ -23,6 +24,9 @@ Game::Game()
 
 	pTextureManager = new TextureManager();
     pGameManager = new GameManager();
+
+	//pGameStatesManager = new GameStatesManager();
+	//pGameManager = pGameStatesManager->getEstadoActual();
 }
 
 

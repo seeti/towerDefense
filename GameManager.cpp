@@ -1,5 +1,6 @@
 #include "GameManager.h"
 #include "Game\Units\Enemigos\Dragon.h"
+#include "Game\Units\Torres\Torre1.h"
 #include "Game.h"
 #include <SFML/Window/Event.hpp>
 #include <iostream>
@@ -15,16 +16,35 @@ void GameManager::handleInput()
 			case sf::Event::Closed:
 				gGame.pGameWindow.close();
 				break;
-			case sf::Event::KeyPressed:
+			case sf::Event::KeyReleased:
 			{
 				switch (event.key.code)
 				{
-					case sf::Keyboard::D:		// left key is pressed: move our character
+					case sf::Keyboard::Escape:
+						gGame.pGameWindow.close();
+						break;
+						
+					case sf::Keyboard::D:		// pulsar D para crear y posicionar un dragon
+					{
 						Dragon* dragon = new Dragon();
 						dragon->setPosition((float)sf::Mouse::getPosition(gGame.pGameWindow).x, (float)sf::Mouse::getPosition(gGame.pGameWindow).y);
 						dragon->draw(0.0f);
 						dragon->setOrigin(true);
 						listadoEnemigos->push_back(dragon);
+						break;
+					}
+							
+					case sf::Keyboard::T:		// pulsar T para crear y posicionar una torre
+					{
+						Torre1* torre = new Torre1();
+						torre->setPosition((float)sf::Mouse::getPosition(gGame.pGameWindow).x, (float)sf::Mouse::getPosition(gGame.pGameWindow).y);
+						torre->draw(0.0f);
+						torre->setOrigin(true);
+						listadoTorres->push_back(torre);
+						break;
+					}
+						
+					default:
 						break;
 				}
 				case sf::Event::MouseButtonPressed:

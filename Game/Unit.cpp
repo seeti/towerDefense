@@ -52,3 +52,8 @@ void Unit::setOrigin(float x, float y)
 {
 	animatedSprite.setOrigin((float)x, (float)y);
 }
+
+void Unit::setDireccion(int dir)
+{
+	animatedSprite.setDireccion(dir);
+}

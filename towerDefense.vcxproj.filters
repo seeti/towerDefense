@@ -12,6 +12,8 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Game\ColectorBasura.h" />
     <ClInclude Include="Game\TextureManager.h" />
+    <ClInclude Include="GameStatesManager.h" />
+    <ClInclude Include="GameState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
@@ -26,5 +28,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Game\ColectorBasura.cpp" />
     <ClCompile Include="Game\TextureManager.cpp" />
+    <ClCompile Include="GameStatesManager.cpp" />
+    <ClCompile Include="GameState.cpp" />
   </ItemGroup>
 </Project>

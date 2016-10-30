@@ -13,5 +13,6 @@ Torre::~Torre()
 bool Torre::onTick(const float elapsed)
 {
 	std::cout << "Torre::onTick" << std::endl;
+	draw(elapsed);
 	return true;
 }

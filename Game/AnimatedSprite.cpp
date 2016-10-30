@@ -59,6 +59,11 @@ void AnimatedSprite::setOrigin(float x, float y)		// Este método (con el dragón)
 	sfSprite.setOrigin(sf::Vector2f(x, y));
 }
 
+void AnimatedSprite::setDireccion(int dir)
+{
+	this->direccion = dir;
+}
+
 void AnimatedSprite::draw() {
 	int frame = frameList[frameActual];
 	sf::IntRect rectSourceSprite(frame * sizeX,	// Multiplicando el frame actual por el tamaño de cada frame tenemos la posicion del primer pixel del frame a mostrar.

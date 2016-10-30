@@ -9,6 +9,8 @@ extern class Game
 {
 private:
 	GameManager* pGameManager;
+	//GameState* pGameManager;
+	//GameStatesManager* pGameStatesManager;
 public:
 	TextureManager* pTextureManager;
 	int iScreenWidth;	///< Tamaño en pixeles del ancho de la pantalla.
